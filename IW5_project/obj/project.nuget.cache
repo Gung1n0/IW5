@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "xfjLM+YGtLs=",
+  "success": true,
+  "projectFilePath": "C:\\Folder\\Uni\\IW5\\Project\\IW5\\IW5_project\\IW5_project.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\jzomb\\.nuget\\packages\\microsoft.aspnetcore.openapi\\10.0.12\\microsoft.aspnetcore.openapi.10.0.12.nupkg.sha512",
+    "C:\\Users\\jzomb\\.nuget\\packages\\microsoft.openapi\\2.12.0\\microsoft.openapi.2.12.0.nupkg.sha512"
+  ],
+  "logs": []
+}
