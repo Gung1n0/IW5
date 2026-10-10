@@ -1,4 +1,4 @@
-﻿namespace IW5_project.API.DAL.Common.Interfaces
+﻿namespace IW5_project.API.DAL.Common.Entities.Interfaces
 {
     public interface IEntity
     {
