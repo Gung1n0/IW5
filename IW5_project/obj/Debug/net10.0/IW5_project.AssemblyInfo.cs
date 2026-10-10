@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("IW5_project")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1101b25f02bfefe7f3aefb6118799d88d621ab8f")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8b70bccbce8d2fd7d1235c8d84c08fa4d28acd66")]
 [assembly: System.Reflection.AssemblyProductAttribute("IW5_project")]
 [assembly: System.Reflection.AssemblyTitleAttribute("IW5_project")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
