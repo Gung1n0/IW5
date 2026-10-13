@@ -31,6 +31,7 @@ namespace DAL
         public string? Text { get; set; }
         public int UserId { get; set; } //connection to user
         public int PlaceId { get; set; } // connection to place
+        //public PlaceDTO place { get; set; } = null!;
     }
 
     public class CreatePolozkaDTO
