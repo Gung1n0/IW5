@@ -1,0 +1,1 @@
+Some parts were inspired or taken from the CookBook example project (e.g., .gitignore)
