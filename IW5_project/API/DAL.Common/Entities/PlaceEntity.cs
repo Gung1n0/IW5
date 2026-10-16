@@ -8,6 +8,5 @@
 
         // TODO: add connection to "polozky"
         // TODO: add connection to "author"
-
     }
 }

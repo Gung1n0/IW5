@@ -72,6 +72,22 @@
             "related": ".pdb;.xml"
           }
         }
+      },
+      "Riok.Mapperly/4.3.1": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/Riok.Mapperly.Abstractions.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Riok.Mapperly.Abstractions.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "build/Riok.Mapperly.targets": {}
+        }
       }
     }
   },
@@ -156,12 +172,43 @@
         "microsoft.openapi.2.12.0.nupkg.sha512",
         "microsoft.openapi.nuspec"
       ]
+    },
+    "Riok.Mapperly/4.3.1": {
+      "sha512": "oSE+OVLHyiojrws0QVbQaAT2YKsYbyHqJXPdV7EhGseR/dYgeWS2x1T5qY5I4E+RJkJqMSG+FyZOq4SljWgJWQ==",
+      "type": "package",
+      "path": "riok.mapperly/4.3.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "analyzers/roslyn4.0/dotnet/cs/Riok.Mapperly.Abstractions.dll",
+        "analyzers/roslyn4.0/dotnet/cs/Riok.Mapperly.dll",
+        "analyzers/roslyn4.11/dotnet/cs/Riok.Mapperly.Abstractions.dll",
+        "analyzers/roslyn4.11/dotnet/cs/Riok.Mapperly.dll",
+        "analyzers/roslyn4.14/dotnet/cs/Riok.Mapperly.Abstractions.dll",
+        "analyzers/roslyn4.14/dotnet/cs/Riok.Mapperly.dll",
+        "analyzers/roslyn4.4/dotnet/cs/Riok.Mapperly.Abstractions.dll",
+        "analyzers/roslyn4.4/dotnet/cs/Riok.Mapperly.dll",
+        "analyzers/roslyn4.5/dotnet/cs/Riok.Mapperly.Abstractions.dll",
+        "analyzers/roslyn4.5/dotnet/cs/Riok.Mapperly.dll",
+        "analyzers/roslyn4.7/dotnet/cs/Riok.Mapperly.Abstractions.dll",
+        "analyzers/roslyn4.7/dotnet/cs/Riok.Mapperly.dll",
+        "analyzers/roslyn5.0/dotnet/cs/Riok.Mapperly.Abstractions.dll",
+        "analyzers/roslyn5.0/dotnet/cs/Riok.Mapperly.dll",
+        "build/Riok.Mapperly.targets",
+        "lib/netstandard2.0/Riok.Mapperly.Abstractions.dll",
+        "lib/netstandard2.0/Riok.Mapperly.Abstractions.xml",
+        "logo.png",
+        "riok.mapperly.4.3.1.nupkg.sha512",
+        "riok.mapperly.nuspec"
+      ]
     }
   },
   "projectFileDependencyGroups": {
     "net10.0": [
       "Microsoft.AspNetCore.OpenApi >= 10.0.12",
-      "Microsoft.EntityFrameworkCore >= 10.0.12"
+      "Microsoft.EntityFrameworkCore >= 10.0.12",
+      "Riok.Mapperly >= 4.3.1"
     ]
   },
   "packageFolders": {
@@ -223,6 +270,10 @@
           "Microsoft.EntityFrameworkCore": {
             "target": "Package",
             "version": "[10.0.12, )"
+          },
+          "Riok.Mapperly": {
+            "target": "Package",
+            "version": "[4.3.1, )"
           }
         },
         "imports": [
