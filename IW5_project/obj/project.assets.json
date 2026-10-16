@@ -2,6 +2,19 @@
   "version": 4,
   "targets": {
     "net10.0": {
+      "FluentValidation/12.2.0": {
+        "type": "package",
+        "compile": {
+          "lib/net8.0/FluentValidation.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/FluentValidation.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Microsoft.AspNetCore.OpenApi/10.0.12": {
         "type": "package",
         "dependencies": {
@@ -24,6 +37,42 @@
           "build/Microsoft.AspNetCore.OpenApi.targets": {}
         }
       },
+      "Microsoft.EntityFrameworkCore/10.0.12": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore.Abstractions": "10.0.12",
+          "Microsoft.EntityFrameworkCore.Analyzers": "10.0.12"
+        },
+        "compile": {
+          "lib/net10.0/Microsoft.EntityFrameworkCore.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net10.0/Microsoft.EntityFrameworkCore.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/net10.0/Microsoft.EntityFrameworkCore.props": {}
+        }
+      },
+      "Microsoft.EntityFrameworkCore.Abstractions/10.0.12": {
+        "type": "package",
+        "compile": {
+          "lib/net10.0/Microsoft.EntityFrameworkCore.Abstractions.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net10.0/Microsoft.EntityFrameworkCore.Abstractions.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Microsoft.EntityFrameworkCore.Analyzers/10.0.12": {
+        "type": "package"
+      },
       "Microsoft.OpenApi/2.12.0": {
         "type": "package",
         "compile": {
@@ -36,10 +85,41 @@
             "related": ".pdb;.xml"
           }
         }
+      },
+      "Riok.Mapperly/4.3.1": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/Riok.Mapperly.Abstractions.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Riok.Mapperly.Abstractions.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "build/Riok.Mapperly.targets": {}
+        }
       }
     }
   },
   "libraries": {
+    "FluentValidation/12.2.0": {
+      "sha512": "DR3lFbdnKucaaj1/8zMNOACMz/64igzox1yVZSFVsLxYB5mxAB+wFP1WZ8fjwrZnbU1KA1DoMzHKYKxUfuZ4wQ==",
+      "type": "package",
+      "path": "fluentvalidation/12.2.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "fluent-validation-icon.png",
+        "fluentvalidation.12.2.0.nupkg.sha512",
+        "fluentvalidation.nuspec",
+        "lib/net8.0/FluentValidation.dll",
+        "lib/net8.0/FluentValidation.xml"
+      ]
+    },
     "Microsoft.AspNetCore.OpenApi/10.0.12": {
       "sha512": "7RnQ/UKn+kK3JDLmTpW+vVqNErWthGPAVAy1aIiBzv4ucQ6g9NFvOJUuT0PHcpvcJxGVxctMxj6t+NESWMrgHQ==",
       "type": "package",
@@ -56,6 +136,51 @@
         "lib/net10.0/Microsoft.AspNetCore.OpenApi.xml",
         "microsoft.aspnetcore.openapi.10.0.12.nupkg.sha512",
         "microsoft.aspnetcore.openapi.nuspec"
+      ]
+    },
+    "Microsoft.EntityFrameworkCore/10.0.12": {
+      "sha512": "e7OrVN8U5yr4kuwdTHWBHGVQIVsGfMkAr0Ej1/BnrS989Q0XBVANpIzNZ2bc1GvMZ0/XwMt5InTnmKskxGy99Q==",
+      "type": "package",
+      "path": "microsoft.entityframeworkcore/10.0.12",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "PACKAGE.md",
+        "buildTransitive/net10.0/Microsoft.EntityFrameworkCore.props",
+        "lib/net10.0/Microsoft.EntityFrameworkCore.dll",
+        "lib/net10.0/Microsoft.EntityFrameworkCore.xml",
+        "microsoft.entityframeworkcore.10.0.12.nupkg.sha512",
+        "microsoft.entityframeworkcore.nuspec"
+      ]
+    },
+    "Microsoft.EntityFrameworkCore.Abstractions/10.0.12": {
+      "sha512": "kDrux7T6C3V/YYYe2LXr7x6AEsVyq5Y2YoTE9er1SwbDtap3z1g8RgxNh5eKQVyB4T+DKvBBJ4Ezd/VZzJQJZg==",
+      "type": "package",
+      "path": "microsoft.entityframeworkcore.abstractions/10.0.12",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "PACKAGE.md",
+        "lib/net10.0/Microsoft.EntityFrameworkCore.Abstractions.dll",
+        "lib/net10.0/Microsoft.EntityFrameworkCore.Abstractions.xml",
+        "microsoft.entityframeworkcore.abstractions.10.0.12.nupkg.sha512",
+        "microsoft.entityframeworkcore.abstractions.nuspec"
+      ]
+    },
+    "Microsoft.EntityFrameworkCore.Analyzers/10.0.12": {
+      "sha512": "Kd4o2oO1A6dfKxjz5LS16QyLtpCFTUiFWwmBABETAXRsSImBdRdWeKjSgbbRhAMiV3a3/nWr95ZtzClT4uaADQ==",
+      "type": "package",
+      "path": "microsoft.entityframeworkcore.analyzers/10.0.12",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "analyzers/dotnet/cs/Microsoft.EntityFrameworkCore.Analyzers.dll",
+        "docs/PACKAGE.md",
+        "microsoft.entityframeworkcore.analyzers.10.0.12.nupkg.sha512",
+        "microsoft.entityframeworkcore.analyzers.nuspec"
       ]
     },
     "Microsoft.OpenApi/2.12.0": {
@@ -75,11 +200,44 @@
         "microsoft.openapi.2.12.0.nupkg.sha512",
         "microsoft.openapi.nuspec"
       ]
+    },
+    "Riok.Mapperly/4.3.1": {
+      "sha512": "oSE+OVLHyiojrws0QVbQaAT2YKsYbyHqJXPdV7EhGseR/dYgeWS2x1T5qY5I4E+RJkJqMSG+FyZOq4SljWgJWQ==",
+      "type": "package",
+      "path": "riok.mapperly/4.3.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "analyzers/roslyn4.0/dotnet/cs/Riok.Mapperly.Abstractions.dll",
+        "analyzers/roslyn4.0/dotnet/cs/Riok.Mapperly.dll",
+        "analyzers/roslyn4.11/dotnet/cs/Riok.Mapperly.Abstractions.dll",
+        "analyzers/roslyn4.11/dotnet/cs/Riok.Mapperly.dll",
+        "analyzers/roslyn4.14/dotnet/cs/Riok.Mapperly.Abstractions.dll",
+        "analyzers/roslyn4.14/dotnet/cs/Riok.Mapperly.dll",
+        "analyzers/roslyn4.4/dotnet/cs/Riok.Mapperly.Abstractions.dll",
+        "analyzers/roslyn4.4/dotnet/cs/Riok.Mapperly.dll",
+        "analyzers/roslyn4.5/dotnet/cs/Riok.Mapperly.Abstractions.dll",
+        "analyzers/roslyn4.5/dotnet/cs/Riok.Mapperly.dll",
+        "analyzers/roslyn4.7/dotnet/cs/Riok.Mapperly.Abstractions.dll",
+        "analyzers/roslyn4.7/dotnet/cs/Riok.Mapperly.dll",
+        "analyzers/roslyn5.0/dotnet/cs/Riok.Mapperly.Abstractions.dll",
+        "analyzers/roslyn5.0/dotnet/cs/Riok.Mapperly.dll",
+        "build/Riok.Mapperly.targets",
+        "lib/netstandard2.0/Riok.Mapperly.Abstractions.dll",
+        "lib/netstandard2.0/Riok.Mapperly.Abstractions.xml",
+        "logo.png",
+        "riok.mapperly.4.3.1.nupkg.sha512",
+        "riok.mapperly.nuspec"
+      ]
     }
   },
   "projectFileDependencyGroups": {
     "net10.0": [
-      "Microsoft.AspNetCore.OpenApi >= 10.0.12"
+      "FluentValidation >= 12.2.0",
+      "Microsoft.AspNetCore.OpenApi >= 10.0.12",
+      "Microsoft.EntityFrameworkCore >= 10.0.12",
+      "Riok.Mapperly >= 4.3.1"
     ]
   },
   "packageFolders": {
@@ -134,9 +292,21 @@
         "framework": "net10.0",
         "targetAlias": "net10.0",
         "dependencies": {
+          "FluentValidation": {
+            "target": "Package",
+            "version": "[12.2.0, )"
+          },
           "Microsoft.AspNetCore.OpenApi": {
             "target": "Package",
             "version": "[10.0.12, )"
+          },
+          "Microsoft.EntityFrameworkCore": {
+            "target": "Package",
+            "version": "[10.0.12, )"
+          },
+          "Riok.Mapperly": {
+            "target": "Package",
+            "version": "[4.3.1, )"
           }
         },
         "imports": [
