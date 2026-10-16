@@ -5,6 +5,8 @@ using IW5_project.API.DAL.Common.Mappers;
 using IW5_project.Common.Enums;
 using Microsoft.EntityFrameworkCore;
 
+// TODO: add normalized searching in text (e.g. s vs š, etc.)
+
 namespace IW5_project.API.DAL.EF.Repositories
 {
     public class PlaceRepository(PlaceMapper placeMapper, DatabaseContext dbContext) : RepositoryBase<PlaceEntity>(dbContext)
@@ -13,7 +15,6 @@ namespace IW5_project.API.DAL.EF.Repositories
         {
             IQueryable<PlaceEntity> places = dbContext.Places.AsNoTracking();
 
-            // search (name or description)
             if (!string.IsNullOrWhiteSpace(query.search))
             {
                 var term = query.search.Trim();
@@ -22,23 +23,20 @@ namespace IW5_project.API.DAL.EF.Repositories
                     (p.description != null && p.description.Contains(term)));
             }
 
-            // filter
             if (query.OwnerId is not null)
             {
                 places = places.Where(p => p.OwnerId == query.OwnerId);
             }
 
-            // count BEFORE skip/take
             var totalCount = places.Count();
 
-            // sort, then page
             places = ApplySort(places, query);
 
             var items = places
                 .Skip((query.page - 1) * query.pageSize)
                 .Take(query.pageSize)
-                .Include(p => p.items)          // so the mapper can read Items.Count
-                .ToList();                      // the SELECT runs here
+                .Include(p => p.items)          
+                .ToList();                      
 
             return new PagedResult<PlaceEntity>
             {
@@ -87,7 +85,7 @@ namespace IW5_project.API.DAL.EF.Repositories
                     : places.OrderBy(p => p.name)
             };
 
-            return sorted.ThenBy(p => p.Id);    // stable paging
+            return sorted.ThenBy(p => p.Id);
         }
     }
 }
