@@ -35,7 +35,7 @@ namespace DAL
         {
             var Entity = new PolozkaEntity
             {
-                Id = _context.Polozky.Count + 1, // Simple auto-increment stub
+                Id = _context.Polozky.Count + 1,
                 Name = Dto.Name,
                 Url = Dto.Url,
                 Amount = Dto.Amount,
