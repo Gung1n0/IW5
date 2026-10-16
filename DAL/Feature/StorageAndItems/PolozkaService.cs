@@ -4,6 +4,8 @@ using System.Linq;
 
 namespace DAL
 {
+    
+
     public class ItemFinder
     {
         public List<PolozkaDTO> FindItem(string target, List<PolozkaDTO> list)
