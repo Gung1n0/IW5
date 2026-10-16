@@ -1,4 +1,4 @@
-﻿namespace IW5_project.API.Common.Enums
+﻿namespace IW5_project.Common.Enums
 {
     public enum SortDirection
     {

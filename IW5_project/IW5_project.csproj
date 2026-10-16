@@ -7,6 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="API\a\**" />
+    <Content Remove="API\a\**" />
+    <EmbeddedResource Remove="API\a\**" />
+    <None Remove="API\a\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.12" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="10.0.12" />
     <PackageReference Include="Riok.Mapperly" Version="4.3.1" />

@@ -1,4 +1,4 @@
-﻿using IW5_project.API.Common.Enums;
+﻿using IW5_project.Common.Enums;
 
 namespace IW5_project.API.Common
 {
