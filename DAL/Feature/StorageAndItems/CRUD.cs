@@ -22,6 +22,7 @@ namespace DAL
 
     public class PolozkaService
     {
+        private readonly TransferObjects _transferObjects;
         private readonly AppDbContext _context;
 
         public PolozkaService(AppDbContext context)
@@ -67,6 +68,17 @@ namespace DAL
                 UserId = Entity.UserId,
                 PlaceId = Entity.PlaceId
             }).ToListAsync();
+        }
+
+        //get polozka by id
+        public async Task<PolozkaDTO> GetByIdAsync(int CurrentId)
+        {
+            PolozkaEntity Polozka = await _context.Polozky.FirstOrDefaultAsync(p => p.Id == CurrentId);
+
+            if (Polozka == null)
+                return null;
+
+           return _transferObjects.EntityToDTO(Polozka);
         }
 
         //updates existing Polozka
