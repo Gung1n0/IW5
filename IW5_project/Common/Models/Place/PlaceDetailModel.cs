@@ -14,10 +14,10 @@ namespace IW5_project.Common.Models.Place
     {
         public PlaceDetailModelValidator()
         {
-            RuleFor(p => p.name).NotEmpty().WithMessage(PlaceDetailModelResources.NameMissingErrorMessage);
-            RuleFor(p => p.name).MaximumLength(Constants.MAX_NAME_LENGTH).WithMessage(PlaceDetailModelResources.MaximumLengthExceededErrorMessage);
-            RuleFor(p => p.description).MaximumLength(Constants.MAX_DESCRIPTION_LENGTH).WithMessage(PlaceDetailModelResources.DescriptionMaximumLengthExceededErrorMessage);
-            RuleFor(p => p.itemCount).GreaterThanOrEqualTo(0).WithMessage(PlaceDetailModelResources.ItemCountNegativeErrorMessage);
+            RuleFor(p => p.name).NotEmpty().WithMessage(PlaceDetailModelResources.PlaceNameMissingErrorMessage);
+            RuleFor(p => p.name).MaximumLength(Constants.MAX_NAME_LENGTH).WithMessage(PlaceDetailModelResources.PlaceNameMaximumLengthExceededErrorMessage);
+            RuleFor(p => p.description).MaximumLength(Constants.MAX_DESCRIPTION_LENGTH).WithMessage(PlaceDetailModelResources.PlaceDescriptionMaximumLengthExceededErrorMessage);
+            RuleFor(p => p.itemCount).GreaterThanOrEqualTo(0).WithMessage(PlaceDetailModelResources.PlaceItemCountNegativeErrorMessage);
         }
     }
 }
