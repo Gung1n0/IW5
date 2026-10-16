@@ -4,12 +4,13 @@ using IW5_project.API.DAL.Common.Entities;
 using IW5_project.API.DAL.Common.Mappers;
 using IW5_project.Common.Enums;
 using Microsoft.EntityFrameworkCore;
+using IW5_project.API.DAL.Common.Repositories;
 
 // TODO: add normalized searching in text (e.g. s vs š, etc.)
 
 namespace IW5_project.API.DAL.EF.Repositories
 {
-    public class PlaceRepository(PlaceMapper placeMapper, DatabaseContext dbContext) : RepositoryBase<PlaceEntity>(dbContext)
+    public class PlaceRepository(PlaceMapper placeMapper, DatabaseContext dbContext) : RepositoryBase<PlaceEntity>(dbContext), IPlaceRepository
     {
         public PagedResult<PlaceEntity> GetPaged(PlaceQuery query)
         {

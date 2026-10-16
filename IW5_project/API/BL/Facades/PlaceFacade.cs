@@ -43,18 +43,18 @@ namespace IW5_project.API.BL.Facades
         {
             if (!placeRepository.Exists(placeModel.Id))
             {
-                return null;                                   // endpoint turns this into 404
+                return null;
             }
 
             ThrowIfWrongOwnerAndNotAdmin(placeModel.Id, userRoles, ownerId);
 
-            var placeEntity = mapper.ToEntity(placeModel);     // OwnerId is ignored by the DAL mapper anyway
+            var placeEntity = mapper.ToEntity(placeModel);    
             return placeRepository.Update(placeEntity);
         }
 
         public void Delete(Guid id, IList<string> userRoles, string? ownerId = null)
         {
-            var place = placeRepository.GetById(id)            // includes Items
+            var place = placeRepository.GetById(id)
                 ?? throw new NotFoundException($"Place {id} does not exist.");
 
             ThrowIfWrongOwnerAndNotAdmin(id, userRoles, ownerId);
