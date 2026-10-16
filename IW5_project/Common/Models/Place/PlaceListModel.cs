@@ -6,5 +6,6 @@
         public string name { get; init; } = null!;
         public string? description { get; init; }
         public int itemCount { get; init; }
+        public string imageUrl { get; set; } = string.Empty;
     }
 }
