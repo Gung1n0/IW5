@@ -4,7 +4,7 @@ using IW5_project.API.DAL.EF;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using static IW5_project.API.DAL.Common.Repositories.IApiRepository;
+using IW5_project.API.DAL.Common.Repositories;
 
 namespace CookBook.Api.DAL.EF.Repositories
 {

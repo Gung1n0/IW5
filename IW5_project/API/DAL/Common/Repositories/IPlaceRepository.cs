@@ -1,6 +1,6 @@
 ﻿using IW5_project.API.Common;
 using IW5_project.API.DAL.Common.Entities;
-using static IW5_project.API.DAL.Common.Repositories.IApiRepository;
+using IW5_project.API.DAL.Common.Repositories;
 
 namespace IW5_project.API.DAL.Common.Repositories
 {
