@@ -4,7 +4,7 @@ using static IW5_project.API.DAL.Common.Repositories.IApiRepository;
 
 namespace IW5_project.API.DAL.Common.Repositories
 {
-    public interface IRecipeRepository : IApiRepository<PlaceEntity>
+    public interface IPlaceRepository : IApiRepository<PlaceEntity>
     {
         PagedResult<PlaceEntity> GetPaged(PlaceQuery query);
     }
