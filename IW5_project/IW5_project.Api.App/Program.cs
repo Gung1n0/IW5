@@ -1,41 +1,49 @@
+using FluentValidation;
+using IW5_project.API.App.Extensions;
+using IW5_project.API.BL.Facades;
+using IW5_project.API.Common;
+using IW5_project.API.DAL.Common.Repositories;
+using IW5_project.API.DAL.EF;                      
+using IW5_project.API.DAL.EF.Repositories;
+using IW5_project.Common.Models.Place;
+using Microsoft.EntityFrameworkCore;
+using BlPlaceMapper = IW5_project.API.BL.Mappers.PlaceMapper;
+using DalPlaceMapper = IW5_project.API.DAL.Common.Mappers.PlaceMapper;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-builder.Services.AddOpenApi();
+// keep default OpenAPI / Swagger service lines here
+
+builder.Services.AddHttpContextAccessor();
+
+// database
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")
+    ?? throw new ArgumentException("The connection string is missing");
+
+// TODO: change to database provider
+//builder.Services.AddDbContext<DatabaseContext>(options =>
+//    options.UseSqlite(connectionString));
+
+// DAL
+builder.Services.AddSingleton<DalPlaceMapper>();
+builder.Services.AddScoped<IPlaceRepository, PlaceRepository>();
+
+// BL
+builder.Services.AddSingleton<BlPlaceMapper>();
+builder.Services.AddScoped<IPlaceFacade, PlaceFacade>();
+
+// validation
+builder.Services.AddScoped<IValidator<PlaceDetailModel>, PlaceDetailModelValidator>();
+builder.Services.AddScoped<IValidator<PlaceQuery>, PlaceQueryValidator>();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.MapOpenApi();
-}
-
+// keep your default OpenAPI / Swagger middleware lines here
 app.UseHttpsRedirection();
 
-var summaries = new[]
-{
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
-
-app.MapGet("/weatherforecast", () =>
-{
-    var forecast = Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
-})
-.WithName("GetWeatherForecast");
+var api = app.MapGroup("api");
+api.UsePlaceEndpoints();
 
 app.Run();
 
-internal record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}
+public partial class Program;                      // lets the end-to-end tests use WebApplicationFactory<Program>
