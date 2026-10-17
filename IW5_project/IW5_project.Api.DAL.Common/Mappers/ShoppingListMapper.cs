@@ -1,5 +1,4 @@
 ﻿using IW5_project.Api.DAL.Common.Entities;
-using IW5_project.IW5_project.Api.DAL.Common.Entities;
 using Riok.Mapperly.Abstractions;
 
 namespace IW5_project.IW5_project.Api.DAL.Common.Mappers
@@ -9,7 +8,7 @@ namespace IW5_project.IW5_project.Api.DAL.Common.Mappers
     {
         [MapperIgnoreSource(nameof(ShoppingListEntity.Id))]
         [MapperIgnoreSource(nameof(ShoppingListEntity.OwnerId))]
-        [MapperIgnoreSource(nameof(ShoppingListEntity.Lines))]
+        [MapperIgnoreSource(nameof(ShoppingListEntity.items))]
         public partial void UpdateEntity(ShoppingListEntity source, ShoppingListEntity destination);
     }
-}1
+}

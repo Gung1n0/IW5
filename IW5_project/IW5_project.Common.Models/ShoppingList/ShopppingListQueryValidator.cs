@@ -8,14 +8,14 @@ namespace IW5_project.Common.Models.ShoppingList
     {
         public ShoppingListQueryValidator()
         {
-            RuleFor(q => q.SortBy)
+            RuleFor(sl => sl.SortBy)
                 .IsInEnum().WithMessage(ShoppingListDetailModelResources.QueryInvalidSortFieldErrorMessage);
 
-            RuleFor(q => q.store)
+            RuleFor(sl => sl.store)
                 .MaximumLength(Constants.MAX_NAME_LENGTH)
                 .WithMessage(ShoppingListDetailModelResources.QueryStoreExceedsMaxLengthErrorMessage);
 
-            RuleFor(q => q.OwnerId)
+            RuleFor(sl => sl.OwnerId)
                 .NotEmpty().WithMessage(ShoppingListDetailModelResources.QueryOwnerIdCannotBeEmptyErrorMessage)
                 .When(q => q.OwnerId is not null);
         }

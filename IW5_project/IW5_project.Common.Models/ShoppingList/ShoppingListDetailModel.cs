@@ -1,9 +1,8 @@
 ﻿using FluentValidation;
+using IW5_project.Common;
 using IW5_project.Common.Models.Place;
 using IW5_project.Common.Models.Resources;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using IW5_project.Common.Models.ShoppingList;
 
 namespace IW5_project.Common.Models.ShoppingList
 {
@@ -12,8 +11,10 @@ namespace IW5_project.Common.Models.ShoppingList
         public Guid Id { get; init; }
         public string name { get; init; } = null!;
         public string? description { get; init; }
-        public int quantity { get; init; }
+        public string store { get; init; } = null!;
+        public IList<ShoppingListItemModel> items { get; init; } = new List<ShoppingListItemModel>();
     }
+    
     public class ShoppingListDetailModelValidator : AbstractValidator<ShoppingListDetailModel>
     {
         public ShoppingListDetailModelValidator()

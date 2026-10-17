@@ -1,9 +1,9 @@
-﻿using IW5_project.API.DAL.Common.Entities;
+﻿using IW5_project.Api.DAL.Common.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using IW5_project.Common;
 
-namespace IW5_project.API.DAL.EF.Configurations;
+namespace IW5_project.Api.DAL.EF.Configurations;
 
 public class PlaceConfiguration : IEntityTypeConfiguration<PlaceEntity>
 {

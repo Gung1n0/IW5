@@ -1,8 +1,8 @@
-﻿using IW5_project.API.DAL.Common.Mappers;
+﻿using IW5_project.Api.DAL.Common.Mappers;
 using IW5_project.Common.Installers;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace IW5_project.API.DAL.Common.Installers
+namespace IW5_project.Api.DAL.Common.Installers
 {
     public abstract class ApiDALInstallerBase : IInstaller
     {

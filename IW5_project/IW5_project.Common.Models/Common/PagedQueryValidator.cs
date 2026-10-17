@@ -1,9 +1,6 @@
 ﻿using FluentValidation;
-using IW5_project.API.Common;
+using IW5_project.Api.Common.Models.Common;
 using IW5_project.Common.Models.Resources;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace IW5_project.Common.Models.Common
 {

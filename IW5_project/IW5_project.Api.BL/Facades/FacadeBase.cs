@@ -1,8 +1,8 @@
-﻿using IW5_project.API.DAL.Common.Entities.Interfaces;
-using IW5_project.API.DAL.Common.Repositories;
+﻿using IW5_project.Api.DAL.Common.Repositories;
+using IW5_project.Api.DAL.Common.Entities.Interfaces;
 using IW5_project.Common;
 
-namespace IW5_project.API.BL.Facades
+namespace IW5_project.Api.BL.Facades
 {
     public class FacadeBase<TRepository, TEntity>(TRepository repository)
         where TRepository : IApiRepository<TEntity>

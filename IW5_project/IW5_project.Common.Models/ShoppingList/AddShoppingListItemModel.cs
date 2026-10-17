@@ -5,7 +5,7 @@ namespace IW5_project.Common.Models.ShoppingList
     public class AddShoppingListItemModel
     {
         public Guid itemId { get; init; }
-        public double quantity { get; init; }
+        public int quantity { get; init; }
     }
     public class AddShoppingListItemModelValidator : AbstractValidator<AddShoppingListItemModel>
     {

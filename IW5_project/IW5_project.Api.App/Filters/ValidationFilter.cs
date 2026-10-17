@@ -1,7 +1,7 @@
 ﻿using System.Net;
 using FluentValidation;
 
-namespace IW5_project.API.App.Filters;
+namespace IW5_project.Api.App.Filters;
 
 public class ValidationFilter<T> : IEndpointFilter
 {

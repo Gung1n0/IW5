@@ -10,6 +10,6 @@ namespace IW5_project.Common.Models.ShoppingList
         public string name { get; init; } = null!;
         public string? description { get; init; }
         public int quantity { get; init; }
-
+        public string store { get; init; } = null!;
     }
 }

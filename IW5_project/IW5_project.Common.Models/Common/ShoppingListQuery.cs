@@ -1,11 +1,12 @@
-﻿using IW5_project.Common.Enums;
+﻿using IW5_project.Common.Models.Enums;
+using IW5_project.Api.Common.Models.Common;
 
 namespace IW5_project.Common.Models.Common
 {
     public class ShoppingListQuery : PagedQueryBase
     {
         public string? OwnerId { get; init; }
-        public string? StoreId { get; init; }
-        public ShoppingListSortby SortBy { get; init; } = ShoppingListSortby.Name;
+        public string? store { get; init; }
+        public ShoppingListSortBy SortBy { get; init; } = ShoppingListSortBy.Name;
     }
 }
