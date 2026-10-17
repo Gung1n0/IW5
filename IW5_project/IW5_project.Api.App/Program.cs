@@ -20,9 +20,8 @@ builder.Services.AddHttpContextAccessor();
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")
     ?? throw new ArgumentException("The connection string is missing");
 
-// TODO: change to database provider
-//builder.Services.AddDbContext<DatabaseContext>(options =>
-//    options.UseSqlite(connectionString));
+builder.Services.AddDbContext<DatabaseContext>(options =>
+    options.UseSqlite(connectionString));
 
 // DAL
 builder.Services.AddSingleton<DalPlaceMapper>();
