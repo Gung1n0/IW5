@@ -1,8 +1,8 @@
-﻿using IW5_project.API.DAL.Common.Entities;
+﻿using IW5_project.Api.DAL.Common.Entities;
 using IW5_project.Common.Models.Place;
 using Riok.Mapperly.Abstractions;
 
-namespace IW5_project.API.BL.Mappers
+namespace IW5_project.Api.BL.Mappers
 {
     [Mapper]
     public partial class PlaceMapper

@@ -1,4 +1,4 @@
-﻿namespace IW5_project.API.Common
+﻿namespace IW5_project.Api.Common.Models.Common  
 {
     public record PagedResult<T>
     {

@@ -1,8 +1,8 @@
 ﻿using IW5_project.Common.Enums;
 
-namespace IW5_project.API.DAL.Common.Entities
+namespace IW5_project.Api.DAL.Common.Entities
 {
-    public class ItemEntity
+    public record ItemEntity : EntityBase
     {
         public string name { get; set; } = string.Empty;
         public string imageUrl { get; set; } = string.Empty;

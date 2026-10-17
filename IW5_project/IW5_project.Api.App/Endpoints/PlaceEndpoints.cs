@@ -1,13 +1,14 @@
-﻿using IW5_project.API.App.Filters;
-using IW5_project.API.BL;
-using IW5_project.API.BL.Facades;
-using IW5_project.API.Common;
+﻿using IW5_project.Api.BL;
+using IW5_project.Api.BL.Facades;
+using IW5_project.Api.Common;
+using IW5_project.Api.Common.Models.Common;
+using IW5_project.Api.App.Filters;
 using IW5_project.Common.Models.Place;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 
-namespace IW5_project.API.App.Endpoints;
+namespace IW5_project.Api.App.Endpoints;
 
 public class PlaceEndpoints() : EndpointsBase
 {
