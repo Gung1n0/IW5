@@ -1,14 +1,14 @@
 using FluentValidation;
-using IW5_project.API.App.Extensions;
-using IW5_project.API.BL.Facades;
-using IW5_project.API.Common;
-using IW5_project.API.DAL.Common.Repositories;
-using IW5_project.API.DAL.EF;                      
-using IW5_project.API.DAL.EF.Repositories;
-using IW5_project.Common.Models.Place;
+using IW5_project.IW5_project.Api.DAL.EF;
+using IW5_project.IW5_project.Api.App.Extensions;
+using IW5_project.IW5_project.Api.BL.Facades;
+using IW5_project.IW5_project.Api.DAL.Common.Repositories;
+using IW5_project.IW5_project.Api.DAL.EF.Repositories;
+using IW5_project.IW5_project.Common.Models.Place;
+using IW5_project.IW5_project.Common.Paging;
 using Microsoft.EntityFrameworkCore;
-using BlPlaceMapper = IW5_project.API.BL.Mappers.PlaceMapper;
-using DalPlaceMapper = IW5_project.API.DAL.Common.Mappers.PlaceMapper;
+using BlPlaceMapper = IW5_project.IW5_project.Api.BL.Mappers.PlaceMapper;
+using DalPlaceMapper = IW5_project.IW5_project.Api.DAL.Common.Mappers.PlaceMapper;
 
 var builder = WebApplication.CreateBuilder(args);
 

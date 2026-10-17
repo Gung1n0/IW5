@@ -1,0 +1,25 @@
+﻿using System.Net;
+using FluentValidation;
+
+namespace IW5_project.IW5_project.Api.App.Filters;
+
+public class ValidationFilter<T> : IEndpointFilter
+{
+    public async ValueTask<object?> InvokeAsync(EndpointFilterInvocationContext context, EndpointFilterDelegate next)
+    {
+        T? argumentToValidate = context.GetArgument<T>(0);
+        IValidator<T>? validator = context.HttpContext.RequestServices.GetService<IValidator<T>>();
+
+        if (validator is not null)
+        {
+            var validationResult = await validator.ValidateAsync(argumentToValidate!);
+            if (!validationResult.IsValid)
+            {
+                return Results.ValidationProblem(validationResult.ToDictionary(),
+                    statusCode: (int)HttpStatusCode.UnprocessableEntity);
+            }
+        }
+
+        return await next.Invoke(context);
+    }
+}
