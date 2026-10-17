@@ -1,0 +1,56 @@
+using CookBook.Api.DAL.EF.Repositories;
+using IW5_project.API.Common;
+using IW5_project.API.DAL.Common.Entities;
+using IW5_project.API.DAL.Common.Mappers;
+using IW5_project.API.DAL.Common.Repositories;
+using Microsoft.EntityFrameworkCore;
+
+namespace IW5_project.API.DAL.EF.Repositories
+{
+    public class UserRepository(UserMapper userMapper, DatabaseContext dbContext)
+        : RepositoryBase<UserEntity>(dbContext), IUserRepository
+    {
+        public PagedResult<UserEntity> GetPaged(UserQuery query)
+        {
+            IQueryable<UserEntity> users = dbContext.Users.AsNoTracking();
+
+            // Text search by name directly in an SQL database
+            if (!string.IsNullOrWhiteSpace(query.search))
+            {
+                var term = query.search.Trim();
+                users = users.Where(u => u.Name.Contains(term));
+            }
+
+            var totalCount = users.Count();
+
+            // Pagination Directly in the Database
+            var items = users
+                .OrderBy(u => u.Name)
+                .Skip((query.page - 1) * query.pageSize)
+                .Take(query.pageSize)
+                .ToList();
+
+            return new PagedResult<UserEntity>
+            {
+                Items = items,
+                Page = query.page,
+                PageSize = query.pageSize,
+                TotalCount = totalCount
+            };
+        }
+
+        public override Guid? Update(UserEntity userUpdated)
+        {
+            var userExisting = dbContext.Users.SingleOrDefault(u => u.Id == userUpdated.Id);
+            if (userExisting is null)
+            {
+                return null;
+            }
+
+            userMapper.UpdateEntity(userUpdated, userExisting);
+            dbContext.SaveChanges();
+
+            return userExisting.Id;
+        }
+    }
+}

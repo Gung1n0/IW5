@@ -8,7 +8,6 @@ namespace IW5_project.API.BL.Mappers
     public partial class PlaceMapper
     {
         [MapProperty("items.Count", nameof(PlaceListModel.itemCount))]
-        [MapperIgnoreSource(nameof(PlaceEntity.description))]
         [MapperIgnoreSource(nameof(PlaceEntity.OwnerId))]
         public partial PlaceListModel ToListModel(PlaceEntity entity);
 
