@@ -7,8 +7,7 @@ namespace IW5_project.Api.DAL.Common.Entities
         public string name { get; set; } = string.Empty;
         public string store { get; set; } = string.Empty;
         public string? description { get; set; } = string.Empty;
-        public List<ItemEntity> items { get; set; } = new List<ItemEntity>();
-
+        public ICollection<ShoppingListItemEntity> Lines { get; set; } = new List<ShoppingListItemEntity>();
         // TODO: add connection to "author"
     }
 }
