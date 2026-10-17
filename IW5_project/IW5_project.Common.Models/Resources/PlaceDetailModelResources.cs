@@ -9,7 +9,7 @@
 
         
         public static string QueryPageGreaterThanZeroErrorMessage { get { return "Page number must be greater than zero."; } }
-        public static string QueryPageSizeNotWithinRangeErrorMessage { get { return "Page size must be greater than zero, and smaller than or equal to {Constants.MAX_PAGE_SIZE}."; } }
+        public static string QueryPageSizeNotWithinRangeErrorMessage { get { return $"Page size must be greater than zero, and smaller than or equal to {{Constants.MAX_PAGE_SIZE}}."; } }
         public static string QueryInvalidSortByErrorMessage { get { return "Sort direction must be Asc or Desc."; } }
         public static string QuerySearchTextExceedsMaxLengthErrorMessage { get { return $"Search text cannot exceed {{Constants.MAX_SEARCH_LENGTH}} characters."; } }
         public static string QueryInvalidSortFieldErrorMessage { get { return "Sort field must be Name or ItemCount."; } }

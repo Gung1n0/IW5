@@ -18,10 +18,13 @@ namespace IW5_project.Common.Models.ShoppingList
     {
         public ShoppingListDetailModelValidator()
         {
-            RuleFor(p => p.name).NotEmpty().WithMessage(ShoppingListDetailModelResources.ShoppingListNameMissingErrorMessage);
-            RuleFor(p => p.name).MaximumLength(Constants.MAX_NAME_LENGTH).WithMessage(ShoppingListDetailModelResources.ShoppingListNameMaximumLengthExceededErrorMessage);
-            RuleFor(p => p.description).MaximumLength(Constants.MAX_DESCRIPTION_LENGTH).WithMessage(ShoppingListDetailModelResources.ShoppingListDescriptionMaximumLengthExceededErrorMessage);
-            RuleFor(p => p.quantity).GreaterThanOrEqualTo(0).WithMessage(ShoppingListDetailModelResources.ShoppingListQuantityNegativeErrorMessage);
+            RuleFor(sl => sl.name).NotEmpty().WithMessage(ShoppingListDetailModelResources.ShoppingListNameMissingErrorMessage);
+            RuleFor(sl => sl.name).MaximumLength(Constants.MAX_NAME_LENGTH).WithMessage(ShoppingListDetailModelResources.ShoppingListNameMaximumLengthExceededErrorMessage);
+
+            RuleFor(sl => sl.store).NotEmpty().WithMessage(ShoppingListDetailModelResources.ShoppingListStoreMissingErrorMessage);
+            RuleFor(sl => sl.store).MaximumLength(Constants.MAX_NAME_LENGTH).WithMessage(ShoppingListDetailModelResources.ShoppingListStoreMaximumLengthExceededErrorMessage);
+
+            RuleFor(sl => sl.description).MaximumLength(Constants.MAX_DESCRIPTION_LENGTH).WithMessage(ShoppingListDetailModelResources.ShoppingListDescriptionMaximumLengthExceededErrorMessage);
         }
     }
 }
