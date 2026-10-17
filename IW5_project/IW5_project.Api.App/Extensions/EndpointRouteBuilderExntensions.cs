@@ -7,5 +7,6 @@ public static class EndpointRouteBuilderExtensions
     public static IEndpointRouteBuilder UsePlaceEndpoints(this IEndpointRouteBuilder endpointRouteBuilder)
         => new PlaceEndpoints().MapEndpoints(endpointRouteBuilder);
 
-    // later: UseShoppingListEndpoints(...)
+    public static IEndpointRouteBuilder UseShoppingListEndpoints(this IEndpointRouteBuilder endpointRouteBuilder)
+        => new ShoppingListEndpoints().MapEndpoints(endpointRouteBuilder);
 }
