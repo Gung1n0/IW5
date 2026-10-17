@@ -1,8 +1,9 @@
-﻿namespace IW5_project.Api.DAL.Common.Entities.Interfaces
+using IW5_project.Common;
+
+namespace IW5_project.API.DAL.Common.Entities.Interfaces
 {
-    public interface IEntity
+    public interface IEntity : IWithId
     {
-        Guid Id { get; set; }
         string? OwnerId { get; set; }
     }
 }
