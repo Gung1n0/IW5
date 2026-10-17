@@ -1,11 +1,7 @@
-﻿using IW5_project.API.DAL.Common.Entities.Interfaces;
-using IW5_project.API.DAL.Common.Repositories;
-using IW5_project.API.DAL.EF;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using IW5_project.Api.DAL.Common.Entities.Interfaces;
+using IW5_project.Api.DAL.Common.Repositories;
 
-namespace CookBook.Api.DAL.EF.Repositories
+namespace IW5_project.Api.DAL.EF.Repositories
 {
     public class RepositoryBase<TEntity> : IApiRepository<TEntity>, IDisposable
         where TEntity : class, IEntity

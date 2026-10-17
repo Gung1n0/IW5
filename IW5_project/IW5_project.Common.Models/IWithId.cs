@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace IW5_project.Common
+﻿namespace IW5_project.Common.Models
 {
     public interface IWithId
     {

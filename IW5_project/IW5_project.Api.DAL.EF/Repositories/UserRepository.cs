@@ -1,11 +1,10 @@
-using CookBook.Api.DAL.EF.Repositories;
-using IW5_project.API.Common;
-using IW5_project.API.DAL.Common.Entities;
-using IW5_project.API.DAL.Common.Mappers;
-using IW5_project.API.DAL.Common.Repositories;
+using IW5_project.Api.DAL.Common.Entities;
+using IW5_project.Api.DAL.Common.Mappers;
+using IW5_project.Api.DAL.Common.Repositories;
+using IW5_project.Common.Models.Common;
 using Microsoft.EntityFrameworkCore;
 
-namespace IW5_project.API.DAL.EF.Repositories
+namespace IW5_project.Api.DAL.EF.Repositories
 {
     public class UserRepository(UserMapper userMapper, DatabaseContext dbContext)
         : RepositoryBase<UserEntity>(dbContext), IUserRepository

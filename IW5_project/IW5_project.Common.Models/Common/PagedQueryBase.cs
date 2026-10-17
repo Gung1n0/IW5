@@ -1,6 +1,6 @@
-﻿using IW5_project.Common.Enums;
+﻿using IW5_project.Common.Models.Enums;
 
-namespace IW5_project.API.Common
+namespace IW5_project.Common.Models.Common
 {
     public class PagedQueryBase
     { 

@@ -1,6 +1,6 @@
-﻿using IW5_project.Common.Enums;
+﻿using IW5_project.Common.Models.Enums;
 
-namespace IW5_project.API.DAL.Common.Entities
+namespace IW5_project.Api.DAL.Common.Entities
 {
     public class ItemEntity
     {

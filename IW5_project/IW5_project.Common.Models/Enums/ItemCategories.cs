@@ -1,4 +1,4 @@
-﻿namespace IW5_project.Common.Enums
+﻿namespace IW5_project.Common.Models.Enums
 {
     public enum ItemCategories
     {

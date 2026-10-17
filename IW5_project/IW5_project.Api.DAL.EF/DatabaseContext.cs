@@ -1,7 +1,7 @@
-﻿using IW5_project.API.DAL.Common.Entities;
+﻿using IW5_project.Api.DAL.Common.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace IW5_project.API.DAL.EF
+namespace IW5_project.Api.DAL.EF
 {
     public class DatabaseContext : DbContext
     {

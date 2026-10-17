@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using IW5_project.API.DAL.Common.Entities.Interfaces;
+﻿using IW5_project.Api.DAL.Common.Entities.Interfaces;
 
-namespace IW5_project.API.DAL.Common.Repositories
+namespace IW5_project.Api.DAL.Common.Repositories
 {
     public interface IApiRepository<TEntity>
         where TEntity : IEntity

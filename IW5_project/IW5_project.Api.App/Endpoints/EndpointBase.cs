@@ -1,5 +1,7 @@
 ﻿using System.Security.Claims;
 
+namespace IW5_project.Api.App.Endpoints;
+
 public abstract class EndpointsBase
 {
     abstract public IEndpointRouteBuilder MapEndpoints(IEndpointRouteBuilder endpointRouteBuilder);
@@ -9,12 +11,12 @@ public abstract class EndpointsBase
 
     public bool IsUserInRole(IHttpContextAccessor httpContextAccessor, string role)
         => httpContextAccessor.HttpContext?.User.IsInRole(role)
-        ?? false;
+           ?? false;
 
     public IList<string> GetUserRoles(IHttpContextAccessor httpContextAccessor)
         => httpContextAccessor.HttpContext?.User.Claims
-            .Where(c => c.Type == ClaimTypes.Role)
-            .Select(c => c.Value)
-            .ToList()
-        ?? [];
+               .Where(c => c.Type == ClaimTypes.Role)
+               .Select(c => c.Value)
+               .ToList()
+           ?? [];
 }

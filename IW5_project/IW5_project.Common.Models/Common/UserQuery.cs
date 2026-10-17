@@ -1,4 +1,4 @@
-namespace IW5_project.API.Common;
+namespace IW5_project.Common.Models.Common;
 
 public class UserQuery : PagedQueryBase
 {

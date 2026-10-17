@@ -1,6 +1,6 @@
-using IW5_project.Common;
+using IW5_project.Common.Models;
 
-namespace IW5_project.API.DAL.Common.Entities.Interfaces
+namespace IW5_project.Api.DAL.Common.Entities.Interfaces
 {
     public interface IEntity : IWithId
     {

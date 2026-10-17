@@ -1,4 +1,4 @@
-namespace IW5_project.API.DAL.Common.Entities;
+namespace IW5_project.Api.DAL.Common.Entities;
 
 public record UserEntity : EntityBase
 {

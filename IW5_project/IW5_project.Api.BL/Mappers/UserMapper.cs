@@ -1,8 +1,8 @@
-using Riok.Mapperly.Abstractions;
-using IW5_project.API.DAL.Common.Entities;
+using IW5_project.Api.DAL.Common.Entities;
 using IW5_project.Common.Models.User;
+using Riok.Mapperly.Abstractions;
 
-namespace IW5_project.API.BL.Mappers
+namespace IW5_project.Api.BL.Mappers
 {
     [Mapper]
     public partial class UserMapper

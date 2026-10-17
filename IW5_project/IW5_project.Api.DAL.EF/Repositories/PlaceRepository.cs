@@ -1,14 +1,13 @@
-﻿using CookBook.Api.DAL.EF.Repositories;
-using IW5_project.API.Common;
-using IW5_project.API.DAL.Common.Entities;
-using IW5_project.API.DAL.Common.Mappers;
-using IW5_project.Common.Enums;
+﻿using IW5_project.Api.DAL.Common.Entities;
+using IW5_project.Api.DAL.Common.Mappers;
+using IW5_project.Api.DAL.Common.Repositories;
+using IW5_project.Common.Models.Common;
+using IW5_project.Common.Models.Enums;
 using Microsoft.EntityFrameworkCore;
-using IW5_project.API.DAL.Common.Repositories;
 
 // TODO: add normalized searching in text (e.g. s vs š, etc.)
 
-namespace IW5_project.API.DAL.EF.Repositories
+namespace IW5_project.Api.DAL.EF.Repositories
 {
     public class PlaceRepository(PlaceMapper placeMapper, DatabaseContext dbContext) : RepositoryBase<PlaceEntity>(dbContext), IPlaceRepository
     {

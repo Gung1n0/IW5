@@ -1,8 +1,7 @@
-﻿using IW5_project.API.Common;
-using IW5_project.API.DAL.Common.Entities;
-using IW5_project.API.DAL.Common.Repositories;
+﻿using IW5_project.Api.DAL.Common.Entities;
+using IW5_project.Common.Models.Common;
 
-namespace IW5_project.API.DAL.Common.Repositories
+namespace IW5_project.Api.DAL.Common.Repositories
 {
     public interface IPlaceRepository : IApiRepository<PlaceEntity>
     {

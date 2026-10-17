@@ -1,6 +1,6 @@
-﻿using IW5_project.API.App.Endpoints;
+﻿using IW5_project.Api.App.Endpoints;
 
-namespace IW5_project.API.App.Extensions;
+namespace IW5_project.Api.App.Extensions;
 
 public static class EndpointRouteBuilderExtensions
 {

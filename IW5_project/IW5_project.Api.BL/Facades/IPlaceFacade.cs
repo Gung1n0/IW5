@@ -1,8 +1,8 @@
-﻿using IW5_project.API.Common;
-using IW5_project.Common.BL.Facades;
+﻿using IW5_project.Common.Models;
+using IW5_project.Common.Models.Common;
 using IW5_project.Common.Models.Place;
 
-namespace IW5_project.API.BL.Facades
+namespace IW5_project.Api.BL.Facades
 {
     public interface IPlaceFacade : IAppFacade
     {
