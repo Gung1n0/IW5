@@ -7,6 +7,7 @@ using IW5_project.Api.App.Extensions;
 using IW5_project.Common.Models.Common;
 using IW5_project.Common.Models.Place;
 using IW5_project.Common.Models.ShoppingList;
+using IW5_project.Api.DAL.EF;
 using Microsoft.EntityFrameworkCore;
 using BlPlaceMapper = IW5_project.Api.BL.Mappers.PlaceMapper;
 using BlShoppingListMapper = IW5_project.Api.BL.Mappers.ShoppingListMapper;
@@ -16,14 +17,16 @@ using DalShoppingListMapper = IW5_project.IW5_project.Api.DAL.Common.Mappers.Sho
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddHttpContextAccessor();
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddOpenApiDocument();
 
 // database
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")
     ?? throw new ArgumentException("The connection string is missing");
 
 // TODO: change to database provider
-//builder.Services.AddDbContext<DatabaseContext>(options =>
-//    options.UseSqlite(connectionString));
+builder.Services.AddDbContext<DatabaseContext>(options =>
+    options.UseSqlite(connectionString));
 
 // DAL
 builder.Services.AddSingleton<DalPlaceMapper>();
@@ -43,6 +46,9 @@ ConfigureValidation(builder.Services);
 var app = builder.Build();
 
 app.UseHttpsRedirection();
+
+app.UseOpenApi();
+app.UseSwaggerUi();
 
 var api = app.MapGroup("api");
 api.UsePlaceEndpoints();
