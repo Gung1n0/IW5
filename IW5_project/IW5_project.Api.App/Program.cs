@@ -6,18 +6,21 @@ using IW5_project.Api.DAL.EF;
 using IW5_project.Api.DAL.EF.Repositories;
 using IW5_project.Common.Models.Common;
 using IW5_project.Common.Models.Place;
+using IW5_project.Common.Models.ShoppingList;
 using IW5_project.Common.Models.User;
 using Microsoft.EntityFrameworkCore;
 using BlPlaceMapper = IW5_project.Api.BL.Mappers.PlaceMapper;
-using DalPlaceMapper = IW5_project.Api.DAL.Common.Mappers.PlaceMapper;
+using BlShoppingListMapper = IW5_project.Api.BL.Mappers.ShoppingListMapper;
 using BlUserMapper = IW5_project.Api.BL.Mappers.UserMapper;
+using DalPlaceMapper = IW5_project.Api.DAL.Common.Mappers.PlaceMapper;
+using DalShoppingListMapper = IW5_project.Api.DAL.Common.Mappers.ShoppingListMapper;
 using DalUserMapper = IW5_project.Api.DAL.Common.Mappers.UserMapper;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// keep default OpenAPI / Swagger service lines here
-
 builder.Services.AddHttpContextAccessor();
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddOpenApiDocument();
 
 // database
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")
@@ -28,34 +31,56 @@ builder.Services.AddDbContext<DatabaseContext>(options =>
 
 // DAL
 builder.Services.AddSingleton<DalPlaceMapper>();
+builder.Services.AddSingleton<DalShoppingListMapper>();
 builder.Services.AddSingleton<DalUserMapper>();
 builder.Services.AddScoped<IPlaceRepository, PlaceRepository>();
+builder.Services.AddScoped<IShoppingListRepository, ShoppingListRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 
 // BL
 builder.Services.AddSingleton<BlPlaceMapper>();
+builder.Services.AddSingleton<BlShoppingListMapper>();
 builder.Services.AddSingleton<BlUserMapper>();
 builder.Services.AddScoped<IPlaceFacade, PlaceFacade>();
+builder.Services.AddScoped<IShoppingListFacade, ShoppingListFacade>();
 builder.Services.AddScoped<IUserFacade, UserFacade>();
 
 // validation
-builder.Services.AddScoped<IValidator<PlaceDetailModel>, PlaceDetailModelValidator>();
-builder.Services.AddScoped<IValidator<PlaceQuery>, PlaceQueryValidator>();
-builder.Services.AddScoped<IValidator<UserDetailModel>, UserDetailModelValidator>();
-builder.Services.AddScoped<IValidator<UserQuery>, UserQueryValidator>();
+IW5_project.Api.App.Program.ConfigureValidation(builder.Services);
 
 var app = builder.Build();
 
-// keep your default OpenAPI / Swagger middleware lines here
 app.UseHttpsRedirection();
+
+app.UseOpenApi();
+app.UseSwaggerUi();
 
 var api = app.MapGroup("api");
 api.UsePlaceEndpoints();
+api.UseShoppingListEndpoints();
 api.UseUserEndpoints();
 
 app.Run();
 
 namespace IW5_project.Api.App
 {
-    public partial class Program;                      // lets the end-to-end tests use WebApplicationFactory<Program>
+    public partial class Program
+    {
+        public static void ConfigureValidation(IServiceCollection services)
+        {
+            // place
+            services.AddScoped<IValidator<PlaceDetailModel>, PlaceDetailModelValidator>();
+            services.AddScoped<IValidator<PlaceQuery>, PlaceQueryValidator>();
+
+            // shopping list
+            services.AddScoped<IValidator<ShoppingListDetailModel>, ShoppingListDetailModelValidator>();
+            services.AddScoped<IValidator<ShoppingListQuery>, ShoppingListQueryValidator>();
+            services.AddScoped<IValidator<AddShoppingListItemModel>, AddShoppingListItemModelValidator>();
+            services.AddScoped<IValidator<UpdateShoppingListItemModel>, UpdateShoppingListItemModelValidator>();
+
+            // user
+            services.AddScoped<IValidator<UserDetailModel>, UserDetailModelValidator>();
+            services.AddScoped<IValidator<UserQuery>, UserQueryValidator>();
+        }
+    }
 }

@@ -1,5 +1,6 @@
-﻿namespace IW5_project.Common.Models.Common
+namespace IW5_project.Common.Models.Common
 {
+
     public record PagedResult<T>
     {
         public required IList<T> Items { get; init; }

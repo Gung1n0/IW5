@@ -3,6 +3,13 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
+# SQLite database files
+*.db
+*.db-shm
+*.db-wal
+*.sqlite
+*.sqlite3
+
 # User-specific files
 *.rsuser
 *.suo
@@ -184,6 +191,7 @@ PublishScripts/
 # NuGet Packages
 *.nupkg
 # The packages folder can be ignored because of Package Restore
+**/.nuget/
 **/[Pp]ackages/*
 # except build/, which is used as an MSBuild target.
 !**/[Pp]ackages/build/
@@ -342,3 +350,4 @@ healthchecksdb
 
 # Mac folder settings
 .DS_Store
+/IW5_project/IW5_project.Api.App/iw5.db

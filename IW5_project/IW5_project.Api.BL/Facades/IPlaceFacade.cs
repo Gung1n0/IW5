@@ -1,4 +1,4 @@
-﻿using IW5_project.Common.Models;
+using IW5_project.Common.Models;
 using IW5_project.Common.Models.Common;
 using IW5_project.Common.Models.Place;
 

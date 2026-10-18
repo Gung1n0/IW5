@@ -3,9 +3,9 @@
     public class PlaceListModel : IWithId
     {
         public Guid Id { get; init; }
-        public string name { get; init; } = null!;
-        public string? description { get; init; }
-        public int itemCount { get; init; }
-        public string imageUrl { get; set; } = string.Empty;
+        public string Name { get; init; } = null!;
+        public string? Description { get; init; }
+        public int ItemCount { get; init; }
+        public string ImageUrl { get; set; } = string.Empty;
     }
 }
