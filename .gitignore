@@ -349,3 +349,4 @@ healthchecksdb
 
 # Mac folder settings
 .DS_Store
+/IW5_project/IW5_project.Api.App/iw5.db
