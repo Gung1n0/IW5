@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore;
 using BlPlaceMapper = IW5_project.Api.BL.Mappers.PlaceMapper;
 using BlShoppingListMapper = IW5_project.Api.BL.Mappers.ShoppingListMapper;
 using DalPlaceMapper = IW5_project.Api.DAL.Common.Mappers.PlaceMapper;
-using DalShoppingListMapper = IW5_project.IW5_project.Api.DAL.Common.Mappers.ShoppingListMapper;
+using DalShoppingListMapper = IW5_project.Api.DAL.Common.Mappers.ShoppingListMapper;
 
 var builder = WebApplication.CreateBuilder(args);
 
