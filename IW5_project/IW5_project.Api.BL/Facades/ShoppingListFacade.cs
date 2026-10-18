@@ -73,12 +73,12 @@ namespace IW5_project.Api.BL.Facades
                 throw new NotFoundException($"Shopping list {shoppingListId} does not exist.");
             }
 
-            if (!shoppingListRepository.ItemExists(model.itemId))
+            if (!shoppingListRepository.ItemExists(model.ItemId))
             {
-                throw new BadRequestException($"Item {model.itemId} does not exist.");
+                throw new BadRequestException($"Item {model.ItemId} does not exist.");
             }
 
-            if (shoppingListRepository.GetLine(shoppingListId, model.itemId) is not null)
+            if (shoppingListRepository.GetLine(shoppingListId, model.ItemId) is not null)
             {
                 throw new ConflictException("This item is already on the shopping list.");
             }
@@ -89,7 +89,7 @@ namespace IW5_project.Api.BL.Facades
         
         public Guid UpdateItem(Guid shoppingListId, Guid itemId, UpdateShoppingListItemModel model)
         {
-            return shoppingListRepository.UpdateLine(shoppingListId, itemId, model.quantity, model.isBought)
+            return shoppingListRepository.UpdateLine(shoppingListId, itemId, model.Quantity, model.IsBought)
                 ?? throw new NotFoundException("This item is not on the shopping list.");
         }
 

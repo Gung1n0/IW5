@@ -20,8 +20,8 @@ namespace IW5_project.Api.DAL.EF.Repositories
             {
                 var term = query.search.Trim();
                 places = places.Where(p =>
-                    p.name.Contains(term) ||
-                    (p.description != null && p.description.Contains(term)));
+                    p.Name.Contains(term) ||
+                    (p.Description != null && p.Description.Contains(term)));
             }
 
             if (query.OwnerId is not null)
@@ -36,7 +36,7 @@ namespace IW5_project.Api.DAL.EF.Repositories
             var items = places
                 .Skip((query.page - 1) * query.pageSize)
                 .Take(query.pageSize)
-                .Include(p => p.items)          
+                .Include(p => p.Items)          
                 .ToList();                      
 
             return new PagedResult<PlaceEntity>
@@ -51,7 +51,7 @@ namespace IW5_project.Api.DAL.EF.Repositories
         public override PlaceEntity? GetById(Guid id)
         {
             return dbContext.Places
-                .Include(p => p.items)
+                .Include(p => p.Items)
                 .SingleOrDefault(p => p.Id == id);
         }
 
@@ -79,11 +79,11 @@ namespace IW5_project.Api.DAL.EF.Repositories
             var sorted = query.SortBy switch
             {
                 PlaceSortBy.ItemCount => descending
-                    ? places.OrderByDescending(p => p.items.Count)
-                    : places.OrderBy(p => p.items.Count),
+                    ? places.OrderByDescending(p => p.Items.Count)
+                    : places.OrderBy(p => p.Items.Count),
                 _ => descending
-                    ? places.OrderByDescending(p => p.name)
-                    : places.OrderBy(p => p.name)
+                    ? places.OrderByDescending(p => p.Name)
+                    : places.OrderBy(p => p.Name)
             };
 
             return sorted.ThenBy(p => p.Id);

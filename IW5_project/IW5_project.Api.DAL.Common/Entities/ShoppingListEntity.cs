@@ -4,10 +4,10 @@ namespace IW5_project.Api.DAL.Common.Entities
 {
     public record ShoppingListEntity : EntityBase
     {
-        public string name { get; set; } = string.Empty;
-        public string store { get; set; } = string.Empty;
-        public string? description { get; set; } = string.Empty;
-        public ICollection<ShoppingListItemEntity> items { get; set; } = new List<ShoppingListItemEntity>();
+        public string Name { get; set; } = string.Empty;
+        public string Store { get; set; } = string.Empty;
+        public string? Description { get; set; } = string.Empty;
+        public ICollection<ShoppingListItemEntity> Items { get; set; } = new List<ShoppingListItemEntity>();
         // TODO: add connection to "author"
     }
 }

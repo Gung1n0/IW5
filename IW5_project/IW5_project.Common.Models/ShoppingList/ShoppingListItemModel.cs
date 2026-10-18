@@ -6,9 +6,9 @@ namespace IW5_project.Common.Models.ShoppingList
 {
     public class ShoppingListItemModel
     {
-        public Guid itemId { get; init; }
-        public int quantity { get; init; }
-        public bool isBought { get; init; }
+        public Guid ItemId { get; init; }
+        public int Quantity { get; init; }
+        public bool IsBought { get; init; }
 
         // TODO: uncomment after implementing Item logic
         //public string ItemName { get; init; } = null!;

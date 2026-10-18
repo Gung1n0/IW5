@@ -8,11 +8,11 @@ namespace IW5_project.Api.DAL.EF.Configurations
     {
         public void Configure(EntityTypeBuilder<ShoppingListItemEntity> builder)
         {
-            builder.HasIndex(l => new { l.shoppingListId, l.itemId }).IsUnique();
+            builder.HasIndex(l => new { l.ShoppingListId, l.ItemId }).IsUnique();
 
-            builder.HasOne(l => l.item)
+            builder.HasOne(l => l.Item)
                 .WithMany()
-                .HasForeignKey(l => l.itemId)
+                .HasForeignKey(l => l.ItemId)
                 .OnDelete(DeleteBehavior.Cascade);
 
         }

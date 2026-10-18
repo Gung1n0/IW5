@@ -8,9 +8,9 @@ namespace IW5_project.Api.DAL.Common.Mappers
     {
         [MapperIgnoreSource(nameof(ShoppingListEntity.Id))]
         [MapperIgnoreSource(nameof(ShoppingListEntity.OwnerId))]
-        [MapperIgnoreSource(nameof(ShoppingListEntity.items))]
+        [MapperIgnoreSource(nameof(ShoppingListEntity.Items))]
         [MapperIgnoreTarget(nameof(ShoppingListEntity.OwnerId))]
-        [MapperIgnoreTarget(nameof(ShoppingListEntity.items))]
+        [MapperIgnoreTarget(nameof(ShoppingListEntity.Items))]
         public partial void UpdateEntity(ShoppingListEntity source, ShoppingListEntity destination);
     }
 }

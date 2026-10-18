@@ -7,9 +7,9 @@ namespace IW5_project.Common.Models.ShoppingList
     public class ShoppingListListModel : IWithId
     {
         public Guid Id { get; init; }
-        public string name { get; init; } = null!;
-        public string? description { get; init; }
-        public int quantity { get; init; }
-        public string store { get; init; } = null!;
+        public string Name { get; init; } = null!;
+        public string? Description { get; init; }
+        public int ItemCount { get; init; }
+        public string Store { get; init; } = null!;
     }
 }

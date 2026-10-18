@@ -7,12 +7,12 @@ namespace IW5_project.Api.DAL.Common.Entities
 {
     public record ShoppingListItemEntity : EntityBase
     {
-        public required int quantity { get; set; }
-        public bool isBought { get; set; }
-        public required Guid shoppingListId { get; set; }
-        public ShoppingListEntity? shoppingList { get; set; }
+        public required int Quantity { get; set; }
+        public bool IsBought { get; set; }
+        public required Guid ShoppingListId { get; set; }
+        public ShoppingListEntity? ShoppingList { get; set; }
 
-        public required Guid itemId { get; set; }
-        public ItemEntity? item { get; set; }
+        public required Guid ItemId { get; set; }
+        public ItemEntity? Item { get; set; }
     }
 }

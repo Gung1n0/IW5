@@ -60,7 +60,7 @@ namespace IW5_project.Api.BL.Facades
 
             ThrowIfWrongOwnerAndNotAdmin(id, userRoles, ownerId);
 
-            if (place.items.Count > 0)
+            if (place.Items.Count > 0)
             {
                 throw new ConflictException("The place still contains items. Move or delete them first.");
             }

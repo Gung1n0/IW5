@@ -5,15 +5,15 @@ namespace IW5_project.Common.Models.ShoppingList
 {
     public class UpdateShoppingListItemModel
     {
-        public int quantity { get; init; }
-        public bool isBought { get; init; }
+        public int Quantity { get; init; }
+        public bool IsBought { get; init; }
     }
 
     public class UpdateShoppingListItemModelValidator : AbstractValidator<UpdateShoppingListItemModel>
     {
         public UpdateShoppingListItemModelValidator()
         {
-            RuleFor(m => m.quantity)
+            RuleFor(m => m.Quantity)
                 .GreaterThan(0)
                 .WithMessage(ShoppingListDetailModelResources.ShoppingListQuantityNotWithinRangeErrorMessage);
         }

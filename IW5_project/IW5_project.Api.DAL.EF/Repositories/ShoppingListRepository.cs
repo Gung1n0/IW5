@@ -27,16 +27,16 @@ namespace IW5_project.Api.DAL.EF.Repositories
             {
                 var term = query.search.Trim();
                 shoppingLists = shoppingLists.Where(sl =>
-                    sl.name.Contains(term) ||
-                    sl.store.Contains(term) ||
-                    (sl.description != null && sl.description.Contains(term)));
+                    sl.Name.Contains(term) ||
+                    sl.Store.Contains(term) ||
+                    (sl.Description != null && sl.Description.Contains(term)));
             }
 
             // filter by store
             if (!string.IsNullOrWhiteSpace(query.store))
             {
                 var store = query.store.Trim();
-                shoppingLists = shoppingLists.Where(sl => sl.store.Contains(store));
+                shoppingLists = shoppingLists.Where(sl => sl.Store.Contains(store));
             }
 
             // filter by owner
@@ -52,7 +52,7 @@ namespace IW5_project.Api.DAL.EF.Repositories
             var items = shoppingLists
                 .Skip((query.page - 1) * query.pageSize)
                 .Take(query.pageSize)
-                .Include(sl => sl.items)
+                .Include(sl => sl.Items)
                 .ToList();
 
             return new PagedResult<ShoppingListEntity>
@@ -67,8 +67,8 @@ namespace IW5_project.Api.DAL.EF.Repositories
         public override ShoppingListEntity? GetById(Guid id)
         {
             return dbContext.ShoppingLists
-                .Include(sl => sl.items)
-                    .ThenInclude(l => l.item)
+                .Include(sl => sl.Items)
+                    .ThenInclude(l => l.Item)
                 .SingleOrDefault(sl => sl.Id == id);
         }
 
@@ -94,7 +94,7 @@ namespace IW5_project.Api.DAL.EF.Repositories
 
         public ShoppingListItemEntity? GetLine(Guid shoppingListId, Guid itemId)
             => dbContext.ShoppingListItems
-                .SingleOrDefault(l => l.shoppingListId == shoppingListId && l.itemId == itemId);
+                .SingleOrDefault(l => l.ShoppingListId == shoppingListId && l.ItemId == itemId);
 
         public Guid InsertLine(ShoppingListItemEntity item)
         {
@@ -111,8 +111,8 @@ namespace IW5_project.Api.DAL.EF.Repositories
                 return null;
             }
 
-            item.quantity = quantity;
-            item.isBought = isBought;
+            item.Quantity = quantity;
+            item.IsBought = isBought;
             dbContext.SaveChanges();
 
             return item.Id;
@@ -139,14 +139,14 @@ namespace IW5_project.Api.DAL.EF.Repositories
             var sorted = query.SortBy switch
             {
                 ShoppingListSortBy.ItemCount => descending
-                    ? shoppingLists.OrderByDescending(sl => sl.items.Count)
-                    : shoppingLists.OrderBy(sl => sl.items.Count),
+                    ? shoppingLists.OrderByDescending(sl => sl.Items.Count)
+                    : shoppingLists.OrderBy(sl => sl.Items.Count),
                 ShoppingListSortBy.Store => descending
-                    ? shoppingLists.OrderByDescending(sl => sl.store)
-                    : shoppingLists.OrderBy(sl => sl.store),
+                    ? shoppingLists.OrderByDescending(sl => sl.Store)
+                    : shoppingLists.OrderBy(sl => sl.Store),
                 _ => descending
-                    ? shoppingLists.OrderByDescending(sl => sl.name)
-                    : shoppingLists.OrderBy(sl => sl.name)
+                    ? shoppingLists.OrderByDescending(sl => sl.Name)
+                    : shoppingLists.OrderBy(sl => sl.Name)
             };
 
             return sorted.ThenBy(sl => sl.Id);

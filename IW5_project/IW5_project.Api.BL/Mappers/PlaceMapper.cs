@@ -7,17 +7,17 @@ namespace IW5_project.Api.BL.Mappers
     [Mapper]
     public partial class PlaceMapper
     {
-        [MapProperty("items.Count", nameof(PlaceListModel.itemCount))]
+        [MapProperty("Items.Count", nameof(PlaceListModel.ItemCount))]
         //[MapperIgnoreSource(nameof(PlaceEntity.description))]
         [MapperIgnoreSource(nameof(PlaceEntity.OwnerId))]
         public partial PlaceListModel ToListModel(PlaceEntity entity);
 
-        [MapProperty("items.Count", nameof(PlaceDetailModel.itemCount))]
+        [MapProperty("Items.Count", nameof(PlaceDetailModel.ItemCount))]
         [MapperIgnoreSource(nameof(PlaceEntity.OwnerId))]
         public partial PlaceDetailModel ToDetailModel(PlaceEntity entity);
 
-        [MapperIgnoreSource(nameof(PlaceDetailModel.itemCount))]
-        [MapperIgnoreTarget(nameof(PlaceEntity.items))]
+        [MapperIgnoreSource(nameof(PlaceDetailModel.ItemCount))]
+        [MapperIgnoreTarget(nameof(PlaceEntity.Items))]
         public partial PlaceEntity ToEntity(PlaceDetailModel model, string? ownerId = null);
 
         public partial List<PlaceListModel> ToListModels(IEnumerable<PlaceEntity> entities);
