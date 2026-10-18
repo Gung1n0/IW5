@@ -1,6 +1,6 @@
-using IW5_project.API.DAL.Common.Entities.Interfaces;
+using IW5_project.Api.DAL.Common.Entities.Interfaces;
 
-namespace IW5_project.API.DAL.Common.Entities;
+namespace IW5_project.Api.DAL.Common.Entities;
 
 public abstract record EntityBase : IEntity
 {

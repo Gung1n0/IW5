@@ -1,10 +1,11 @@
-﻿using IW5_project.API.BL.Mappers;
-using IW5_project.API.Common;
-using IW5_project.API.DAL.Common.Entities;
-using IW5_project.API.DAL.Common.Repositories;
+﻿using IW5_project.Api.BL.Mappers;
+using IW5_project.Api.Common;
+using IW5_project.Api.Common.Models.Common;
+using IW5_project.Api.DAL.Common.Entities;
+using IW5_project.Api.DAL.Common.Repositories;
 using IW5_project.Common.Models.Place;
 
-namespace IW5_project.API.BL.Facades
+namespace IW5_project.Api.BL.Facades
 {
     public class PlaceFacade(
         IPlaceRepository placeRepository,
@@ -59,7 +60,7 @@ namespace IW5_project.API.BL.Facades
 
             ThrowIfWrongOwnerAndNotAdmin(id, userRoles, ownerId);
 
-            if (place.items.Count > 0)
+            if (place.Items.Count > 0)
             {
                 throw new ConflictException("The place still contains items. Move or delete them first.");
             }

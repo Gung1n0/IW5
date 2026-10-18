@@ -1,13 +1,11 @@
-﻿namespace IW5_project.API.DAL.Common.Entities
+﻿namespace IW5_project.Api.DAL.Common.Entities
 {
     public record PlaceEntity : EntityBase
     {
-        public string name { get; set; } = string.Empty;
-        public string imageUrl { get; set; } = string.Empty;
-        public string? description { get; set; } = string.Empty;
-
-        public List<ItemEntity> items { get; set; } = new List<ItemEntity>();
-        // TODO: add connection to "polozky"
+        public string Name { get; set; } = string.Empty;
+        public string ImageUrl { get; set; } = string.Empty;
+        public string? Description { get; set; } = string.Empty;
+        public List<ItemEntity> Items { get; set; } = new List<ItemEntity>();
         // TODO: add connection to "author"
     }
 }

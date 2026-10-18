@@ -1,21 +1,19 @@
-﻿using IW5_project.API.DAL.Common.Entities;
+﻿using IW5_project.Api.DAL.Common.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using IW5_project.Common;
 
-namespace IW5_project.API.DAL.EF.Configurations;
+namespace IW5_project.Api.DAL.EF.Configurations;
 
 public class PlaceConfiguration : IEntityTypeConfiguration<PlaceEntity>
 {
-    
-
     public void Configure(EntityTypeBuilder<PlaceEntity> builder)
     {
-        builder.Property(p => p.name).HasMaxLength(Constants.MAX_NAME_LENGTH);
-        builder.Property(p => p.description).HasMaxLength(Constants.MAX_DESCRIPTION_LENGTH);
-        builder.Property(p => p.imageUrl).HasMaxLength(Constants.MAX_IMAGE_URL_LENGTH);
+        builder.Property(p => p.Name).HasMaxLength(Constants.MAX_NAME_LENGTH);
+        builder.Property(p => p.Description).HasMaxLength(Constants.MAX_DESCRIPTION_LENGTH);
+        builder.Property(p => p.ImageUrl).HasMaxLength(Constants.MAX_IMAGE_URL_LENGTH);
 
-        builder.HasIndex(p => p.name);
+        builder.HasIndex(p => p.Name);
 
         // implement when polozky is finished
         //builder.HasMany(p => p.items)
