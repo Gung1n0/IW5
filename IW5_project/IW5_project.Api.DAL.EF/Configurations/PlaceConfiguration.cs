@@ -7,8 +7,6 @@ namespace IW5_project.Api.DAL.EF.Configurations;
 
 public class PlaceConfiguration : IEntityTypeConfiguration<PlaceEntity>
 {
-    
-
     public void Configure(EntityTypeBuilder<PlaceEntity> builder)
     {
         builder.Property(p => p.Name).HasMaxLength(Constants.MAX_NAME_LENGTH);

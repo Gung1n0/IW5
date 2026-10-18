@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace IW5_project.Api.DAL.EF.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialMigration : Migration
+    public partial class Initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -16,9 +16,9 @@ namespace IW5_project.Api.DAL.EF.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "TEXT", nullable: false),
-                    name = table.Column<string>(type: "TEXT", maxLength: 100, nullable: false),
-                    imageUrl = table.Column<string>(type: "TEXT", maxLength: 2048, nullable: false),
-                    description = table.Column<string>(type: "TEXT", maxLength: 500, nullable: true),
+                    Name = table.Column<string>(type: "TEXT", maxLength: 100, nullable: false),
+                    ImageUrl = table.Column<string>(type: "TEXT", maxLength: 2048, nullable: false),
+                    Description = table.Column<string>(type: "TEXT", maxLength: 500, nullable: true),
                     OwnerId = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
@@ -31,9 +31,9 @@ namespace IW5_project.Api.DAL.EF.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "TEXT", nullable: false),
-                    name = table.Column<string>(type: "TEXT", nullable: false),
-                    store = table.Column<string>(type: "TEXT", nullable: false),
-                    description = table.Column<string>(type: "TEXT", nullable: true),
+                    Name = table.Column<string>(type: "TEXT", maxLength: 100, nullable: false),
+                    Store = table.Column<string>(type: "TEXT", maxLength: 100, nullable: false),
+                    Description = table.Column<string>(type: "TEXT", maxLength: 500, nullable: true),
                     OwnerId = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
@@ -46,12 +46,12 @@ namespace IW5_project.Api.DAL.EF.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "TEXT", nullable: false),
-                    name = table.Column<string>(type: "TEXT", nullable: false),
-                    imageUrl = table.Column<string>(type: "TEXT", nullable: false),
-                    quantity = table.Column<int>(type: "INTEGER", nullable: false),
-                    expirationDate = table.Column<DateTime>(type: "TEXT", nullable: true),
-                    category = table.Column<int>(type: "INTEGER", nullable: false),
-                    description = table.Column<string>(type: "TEXT", nullable: true),
+                    Name = table.Column<string>(type: "TEXT", nullable: false),
+                    ImageUrl = table.Column<string>(type: "TEXT", nullable: false),
+                    Quantity = table.Column<int>(type: "INTEGER", nullable: false),
+                    ExpirationDate = table.Column<DateTime>(type: "TEXT", nullable: true),
+                    Category = table.Column<int>(type: "INTEGER", nullable: false),
+                    Description = table.Column<string>(type: "TEXT", nullable: true),
                     PlaceEntityId = table.Column<Guid>(type: "TEXT", nullable: true),
                     OwnerId = table.Column<string>(type: "TEXT", nullable: true)
                 },
@@ -70,24 +70,24 @@ namespace IW5_project.Api.DAL.EF.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "TEXT", nullable: false),
-                    quantity = table.Column<int>(type: "INTEGER", nullable: false),
-                    isBought = table.Column<bool>(type: "INTEGER", nullable: false),
-                    shoppingListId = table.Column<Guid>(type: "TEXT", nullable: false),
-                    itemId = table.Column<Guid>(type: "TEXT", nullable: false),
+                    Quantity = table.Column<int>(type: "INTEGER", nullable: false),
+                    IsBought = table.Column<bool>(type: "INTEGER", nullable: false),
+                    ShoppingListId = table.Column<Guid>(type: "TEXT", nullable: false),
+                    ItemId = table.Column<Guid>(type: "TEXT", nullable: false),
                     OwnerId = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_ShoppingListItems", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ShoppingListItems_Items_itemId",
-                        column: x => x.itemId,
+                        name: "FK_ShoppingListItems_Items_ItemId",
+                        column: x => x.ItemId,
                         principalTable: "Items",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ShoppingListItems_ShoppingLists_shoppingListId",
-                        column: x => x.shoppingListId,
+                        name: "FK_ShoppingListItems_ShoppingLists_ShoppingListId",
+                        column: x => x.ShoppingListId,
                         principalTable: "ShoppingLists",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -99,20 +99,25 @@ namespace IW5_project.Api.DAL.EF.Migrations
                 column: "PlaceEntityId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Places_name",
+                name: "IX_Places_Name",
                 table: "Places",
-                column: "name");
+                column: "Name");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ShoppingListItems_itemId",
+                name: "IX_ShoppingListItems_ItemId",
                 table: "ShoppingListItems",
-                column: "itemId");
+                column: "ItemId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ShoppingListItems_shoppingListId_itemId",
+                name: "IX_ShoppingListItems_ShoppingListId_ItemId",
                 table: "ShoppingListItems",
-                columns: new[] { "shoppingListId", "itemId" },
+                columns: new[] { "ShoppingListId", "ItemId" },
                 unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ShoppingLists_Name",
+                table: "ShoppingLists",
+                column: "Name");
         }
 
         /// <inheritdoc />

@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace IW5_project.Api.DAL.EF.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20261018104814_InitialMigration")]
-    partial class InitialMigration
+    [Migration("20261018153628_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -26,30 +26,30 @@ namespace IW5_project.Api.DAL.EF.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
+                    b.Property<int>("Category")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime?>("ExpirationDate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ImageUrl")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("OwnerId")
                         .HasColumnType("TEXT");
 
                     b.Property<Guid?>("PlaceEntityId")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("category")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("description")
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime?>("expirationDate")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("imageUrl")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("name")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("quantity")
+                    b.Property<int>("Quantity")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
@@ -65,26 +65,26 @@ namespace IW5_project.Api.DAL.EF.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("OwnerId")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("description")
+                    b.Property<string>("Description")
                         .HasMaxLength(500)
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("imageUrl")
+                    b.Property<string>("ImageUrl")
                         .IsRequired()
                         .HasMaxLength(2048)
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("name")
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("OwnerId")
+                        .HasColumnType("TEXT");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("name");
+                    b.HasIndex("Name");
 
                     b.ToTable("Places");
                 });
@@ -95,21 +95,26 @@ namespace IW5_project.Api.DAL.EF.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("Description")
+                        .HasMaxLength(500)
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("OwnerId")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("description")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("name")
+                    b.Property<string>("Store")
                         .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("store")
-                        .IsRequired()
+                        .HasMaxLength(100)
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Name");
 
                     b.ToTable("ShoppingLists");
                 });
@@ -120,26 +125,26 @@ namespace IW5_project.Api.DAL.EF.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
+                    b.Property<bool>("IsBought")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<Guid>("ItemId")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("OwnerId")
                         .HasColumnType("TEXT");
 
-                    b.Property<bool>("isBought")
+                    b.Property<int>("Quantity")
                         .HasColumnType("INTEGER");
 
-                    b.Property<Guid>("itemId")
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("quantity")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<Guid>("shoppingListId")
+                    b.Property<Guid>("ShoppingListId")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("itemId");
+                    b.HasIndex("ItemId");
 
-                    b.HasIndex("shoppingListId", "itemId")
+                    b.HasIndex("ShoppingListId", "ItemId")
                         .IsUnique();
 
                     b.ToTable("ShoppingListItems");
@@ -148,37 +153,37 @@ namespace IW5_project.Api.DAL.EF.Migrations
             modelBuilder.Entity("IW5_project.Api.DAL.Common.Entities.ItemEntity", b =>
                 {
                     b.HasOne("IW5_project.Api.DAL.Common.Entities.PlaceEntity", null)
-                        .WithMany("items")
+                        .WithMany("Items")
                         .HasForeignKey("PlaceEntityId");
                 });
 
             modelBuilder.Entity("IW5_project.Api.DAL.Common.Entities.ShoppingListItemEntity", b =>
                 {
-                    b.HasOne("IW5_project.Api.DAL.Common.Entities.ItemEntity", "item")
+                    b.HasOne("IW5_project.Api.DAL.Common.Entities.ItemEntity", "Item")
                         .WithMany()
-                        .HasForeignKey("itemId")
+                        .HasForeignKey("ItemId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("IW5_project.Api.DAL.Common.Entities.ShoppingListEntity", "shoppingList")
-                        .WithMany("items")
-                        .HasForeignKey("shoppingListId")
+                    b.HasOne("IW5_project.Api.DAL.Common.Entities.ShoppingListEntity", "ShoppingList")
+                        .WithMany("Items")
+                        .HasForeignKey("ShoppingListId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("item");
+                    b.Navigation("Item");
 
-                    b.Navigation("shoppingList");
+                    b.Navigation("ShoppingList");
                 });
 
             modelBuilder.Entity("IW5_project.Api.DAL.Common.Entities.PlaceEntity", b =>
                 {
-                    b.Navigation("items");
+                    b.Navigation("Items");
                 });
 
             modelBuilder.Entity("IW5_project.Api.DAL.Common.Entities.ShoppingListEntity", b =>
                 {
-                    b.Navigation("items");
+                    b.Navigation("Items");
                 });
 #pragma warning restore 612, 618
         }
