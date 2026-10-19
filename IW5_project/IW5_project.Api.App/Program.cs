@@ -9,6 +9,8 @@ using IW5_project.Common.Models.Place;
 using IW5_project.Common.Models.ShoppingList;
 using IW5_project.Common.Models.User;
 using Microsoft.EntityFrameworkCore;
+using NSwag;
+using NSwag.Generation.Processors.Security;
 using BlPlaceMapper = IW5_project.Api.BL.Mappers.PlaceMapper;
 using BlShoppingListMapper = IW5_project.Api.BL.Mappers.ShoppingListMapper;
 using BlUserMapper = IW5_project.Api.BL.Mappers.UserMapper;
@@ -19,7 +21,33 @@ using DalUserMapper = IW5_project.Api.DAL.Common.Mappers.UserMapper;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddHttpContextAccessor();
-builder.Services.AddEndpointsApiExplorer();
+// Temporary solution before User Identity providers setup
+builder.Services.AddOpenApiDocument(document =>
+{
+    document.Title = "IW5 API";
+    document.Version = "v1";
+
+    // Header for user role
+    document.AddSecurity("X-User-Role", [], new OpenApiSecurityScheme
+    {
+        Type = OpenApiSecuritySchemeType.ApiKey,
+        Name = "X-User-Role",
+        In = OpenApiSecurityApiKeyLocation.Header,
+        Description = "Enter a role for testing ('admin' or 'user')"
+    });
+
+    // Header for user ID
+    document.AddSecurity("X-User-Id", [], new OpenApiSecurityScheme
+    {
+        Type = OpenApiSecuritySchemeType.ApiKey,
+        Name = "X-User-Id",
+        In = OpenApiSecurityApiKeyLocation.Header,
+        Description = "Enter a user Guid for testing"
+    });
+
+    document.OperationProcessors.Add(new AspNetCoreOperationSecurityScopeProcessor("X-User-Role"));
+    document.OperationProcessors.Add(new AspNetCoreOperationSecurityScopeProcessor("X-User-Id"));
+});
 builder.Services.AddOpenApiDocument();
 
 // database
