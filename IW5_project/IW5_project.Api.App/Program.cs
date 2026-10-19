@@ -21,6 +21,7 @@ using DalUserMapper = IW5_project.Api.DAL.Common.Mappers.UserMapper;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddHttpContextAccessor();
+builder.Services.AddEndpointsApiExplorer();
 // Temporary solution before User Identity providers setup
 builder.Services.AddOpenApiDocument(document =>
 {
@@ -48,7 +49,6 @@ builder.Services.AddOpenApiDocument(document =>
     document.OperationProcessors.Add(new AspNetCoreOperationSecurityScopeProcessor("X-User-Role"));
     document.OperationProcessors.Add(new AspNetCoreOperationSecurityScopeProcessor("X-User-Id"));
 });
-builder.Services.AddOpenApiDocument();
 
 // database
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")
@@ -87,6 +87,12 @@ var api = app.MapGroup("api");
 api.UsePlaceEndpoints();
 api.UseShoppingListEndpoints();
 api.UseUserEndpoints();
+
+using (var scope = app.Services.CreateScope())
+{
+    var dbContext = scope.ServiceProvider.GetRequiredService<DatabaseContext>();
+    dbContext.Database.Migrate();
+}
 
 app.Run();
 
