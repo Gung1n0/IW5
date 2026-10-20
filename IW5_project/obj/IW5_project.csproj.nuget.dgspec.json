@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Folder\\Uni\\IW5\\Project\\IW5\\IW5_project\\IW5_project.csproj": {}
+    "C:\\Users\\filip\\source\\repos\\IW5\\project\\IW5_project\\IW5_project.csproj": {}
   },
   "projects": {
-    "C:\\Folder\\Uni\\IW5\\Project\\IW5\\IW5_project\\IW5_project.csproj": {
+    "C:\\Users\\filip\\source\\repos\\IW5\\project\\IW5_project\\IW5_project.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Folder\\Uni\\IW5\\Project\\IW5\\IW5_project\\IW5_project.csproj",
+        "projectUniqueName": "C:\\Users\\filip\\source\\repos\\IW5\\project\\IW5_project\\IW5_project.csproj",
         "projectName": "IW5_project",
-        "projectPath": "C:\\Folder\\Uni\\IW5\\Project\\IW5\\IW5_project\\IW5_project.csproj",
-        "packagesPath": "C:\\Users\\jzomb\\.nuget\\packages\\",
-        "outputPath": "C:\\Folder\\Uni\\IW5\\Project\\IW5\\IW5_project\\obj\\",
+        "projectPath": "C:\\Users\\filip\\source\\repos\\IW5\\project\\IW5_project\\IW5_project.csproj",
+        "packagesPath": "C:\\Users\\filip\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\filip\\source\\repos\\IW5\\project\\IW5_project\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\jzomb\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\filip\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -55,6 +55,10 @@
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
               "version": "[10.0.12, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[10.3.1, )"
             }
           },
           "imports": [

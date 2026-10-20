@@ -7,7 +7,23 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Entities\**" />
+    <Compile Remove="a\**" />
+    <Content Remove="Entities\**" />
+    <Content Remove="a\**" />
+    <EmbeddedResource Remove="Entities\**" />
+    <EmbeddedResource Remove="a\**" />
+    <None Remove="Entities\**" />
+    <None Remove="a\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.12" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="10.3.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Api.BL\" />
   </ItemGroup>
 
 </Project>
