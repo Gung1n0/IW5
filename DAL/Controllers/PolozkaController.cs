@@ -1,7 +1,8 @@
 using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
-
+using DAL.Mappers;
+using DAL.Models;
 namespace DAL
 {
 

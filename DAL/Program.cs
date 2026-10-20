@@ -1,26 +1,32 @@
-using System.Reflection.Metadata;
-using Microsoft.Extensions.Options;
+using DAL;
+using DAL.Mappers;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
 builder.Services.AddControllers();
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-builder.Services.AddOpenApi();
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
+//Temporary Database registration
+builder.Services.AddSingleton<AppDbContext>();
+
+builder.Services.AddScoped<PolozkaService>();
+builder.Services.AddScoped<TransferObjects>();
+
+builder.Services.AddTransient<ItemFinder>();
+builder.Services.AddTransient<OrderItems>();
+builder.Services.AddTransient<FilterItems>();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.MapOpenApi();
+    app.UseSwagger();
+    app.UseSwaggerUI();
 }
 
 app.UseHttpsRedirection();
-
 app.UseAuthorization();
-
 app.MapControllers();
 
 app.Run();
