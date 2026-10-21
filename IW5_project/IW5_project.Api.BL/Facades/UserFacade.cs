@@ -78,6 +78,11 @@ public class UserFacade(
             throw new UnauthorizedAccessException("Only administrators can delete users.");
         }
 
+        if (!string.IsNullOrWhiteSpace(currentUserId) && currentUserId != id.ToString())
+        {
+            userRepository.TransferOwnership(id, currentUserId);
+        }
+
         userRepository.Remove(id);
     }
 }

@@ -6,5 +6,6 @@ namespace IW5_project.Api.DAL.Common.Repositories
     public interface IUserRepository : IApiRepository<UserEntity>
     {
         PagedResult<UserEntity> GetPaged(UserQuery query);
+        void TransferOwnership(Guid fromUserId, string toUserId);
     }
 }

@@ -58,5 +58,30 @@ namespace IW5_project.Api.DAL.EF.Repositories
 
             return userExisting.Id;
         }
+
+        public void TransferOwnership(Guid fromUserId, string toUserId)
+        {
+            var oldOwnerId = fromUserId.ToString();
+
+            var places = dbContext.Places.Where(p => p.OwnerId == oldOwnerId).ToList();
+            foreach (var place in places)
+            {
+                place.OwnerId = toUserId;
+            }
+
+            var items = dbContext.Items.Where(i => i.OwnerId == oldOwnerId).ToList();
+            foreach (var item in items)
+            {
+                item.OwnerId = toUserId;
+            }
+
+            var shoppingLists = dbContext.ShoppingLists.Where(sl => sl.OwnerId == oldOwnerId).ToList();
+            foreach (var list in shoppingLists)
+            {
+                list.OwnerId = toUserId;
+            }
+
+            dbContext.SaveChanges();
+        }
     }
 }

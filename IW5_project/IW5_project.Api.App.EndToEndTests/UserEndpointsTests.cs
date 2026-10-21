@@ -590,6 +590,7 @@ public class UserEndpointsTests : ApiTestBase
     {
         // Arrange: User owns a place
         var userId = SeedUser("Author User", UserRoles.User);
+        var adminId = SeedUser("Admin User", UserRoles.Admin);
         var placeId = SeedPlace("Kitchen Shelf");
 
         Factory.Seed(db =>
@@ -601,6 +602,7 @@ public class UserEndpointsTests : ApiTestBase
         // Act: Admin deletes user
         using var request = new HttpRequestMessage(HttpMethod.Delete, $"/api/user/{userId}");
         request.Headers.Add("X-User-Role", UserRoles.Admin);
+        request.Headers.Add("X-User-Id", adminId.ToString());
         var response = await Client.SendAsync(request);
 
         // Assert: Delete was successful
@@ -609,8 +611,13 @@ public class UserEndpointsTests : ApiTestBase
         // User does not exist
         Assert.Equal(HttpStatusCode.NotFound, (await Client.GetAsync($"/api/user/{userId}")).StatusCode);
 
-        // Place DOES still exist
+        // Place DOES still exist and ownership was transferred to the deleting admin
         Assert.Equal(HttpStatusCode.OK, (await Client.GetAsync($"/api/place/{placeId}")).StatusCode);
+
+        using var scope = Factory.Services.CreateScope();
+        var db = scope.ServiceProvider.GetRequiredService<DatabaseContext>();
+        var place = await db.Places.AsNoTracking().SingleAsync(p => p.Id == placeId);
+        Assert.Equal(adminId.ToString(), place.OwnerId);
     }
 
     // ==========================================
@@ -731,5 +738,53 @@ public class UserEndpointsTests : ApiTestBase
 
         // Assert
         Assert.Equal(HttpStatusCode.Forbidden, response.StatusCode);
+    }
+
+    [Fact]
+    public async Task TC31_DeleteUser_TransfersPlacesItemsAndShoppingListsToAdmin()
+    {
+        // Arrange
+        var userId = SeedUser("User With All", UserRoles.User);
+        var adminId = SeedUser("Admin Collector", UserRoles.Admin);
+        var placeId = SeedPlace("Basement");
+        var itemId = SeedItem("Flour");
+        var listId = SeedShoppingList("Party Supplies", "Metro");
+
+        Factory.Seed(db =>
+        {
+            var p = db.Places.Single(x => x.Id == placeId);
+            p.OwnerId = userId.ToString();
+
+            var i = db.Items.Single(x => x.Id == itemId);
+            i.OwnerId = userId.ToString();
+
+            var l = db.ShoppingLists.Single(x => x.Id == listId);
+            l.OwnerId = userId.ToString();
+        });
+
+        // Act: Admin deletes user
+        using var request = new HttpRequestMessage(HttpMethod.Delete, $"/api/user/{userId}");
+        request.Headers.Add("X-User-Role", UserRoles.Admin);
+        request.Headers.Add("X-User-Id", adminId.ToString());
+        var response = await Client.SendAsync(request);
+
+        // Assert
+        Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+
+        using var scope = Factory.Services.CreateScope();
+        var db = scope.ServiceProvider.GetRequiredService<DatabaseContext>();
+
+        // User is deleted
+        Assert.Null(await db.Users.AsNoTracking().SingleOrDefaultAsync(u => u.Id == userId));
+
+        // Place, item, and shopping list are all transferred to adminId
+        var place = await db.Places.AsNoTracking().SingleAsync(p => p.Id == placeId);
+        Assert.Equal(adminId.ToString(), place.OwnerId);
+
+        var item = await db.Items.AsNoTracking().SingleAsync(i => i.Id == itemId);
+        Assert.Equal(adminId.ToString(), item.OwnerId);
+
+        var list = await db.ShoppingLists.AsNoTracking().SingleAsync(l => l.Id == listId);
+        Assert.Equal(adminId.ToString(), list.OwnerId);
     }
 }
