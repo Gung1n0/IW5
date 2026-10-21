@@ -23,6 +23,8 @@ public class UserEndpointsTests : ApiTestBase
         string? callerRole = UserRoles.Admin,
         string? callerId = null)
     {
+        callerId ??= Guid.NewGuid().ToString();
+
         using var request = new HttpRequestMessage(HttpMethod.Post, "/api/user")
         {
             Content = JsonContent.Create(new UserDetailModel(Guid.NewGuid(), name, photoUrl, role))
@@ -241,6 +243,7 @@ public class UserEndpointsTests : ApiTestBase
         {
             Content = JsonContent.Create(new UserDetailModel(Guid.NewGuid(), "Regular Karel", null, UserRoles.User))
         };
+        requestUser.Headers.Add("X-User-Id", Guid.NewGuid().ToString());
         requestUser.Headers.Add("X-User-Role", UserRoles.Admin);
 
         // Act
@@ -260,6 +263,7 @@ public class UserEndpointsTests : ApiTestBase
         {
             Content = JsonContent.Create(new UserDetailModel(Guid.NewGuid(), "Admin Alice", null, UserRoles.Admin))
         };
+        requestAdmin.Headers.Add("X-User-Id", Guid.NewGuid().ToString());
         requestAdmin.Headers.Add("X-User-Role", UserRoles.Admin);
 
         // Act
@@ -277,6 +281,7 @@ public class UserEndpointsTests : ApiTestBase
         {
             Content = JsonContent.Create(new UserDetailModel(Guid.NewGuid(), "Malicious Admin", null, UserRoles.Admin))
         };
+        request.Headers.Add("X-User-Id", Guid.NewGuid().ToString());
         request.Headers.Add("X-User-Role", UserRoles.User);
 
         // Act
@@ -296,6 +301,7 @@ public class UserEndpointsTests : ApiTestBase
         {
             Content = JsonContent.Create(new UserDetailModel(Guid.NewGuid(), invalidName, null, UserRoles.User))
         };
+        request.Headers.Add("X-User-Id", Guid.NewGuid().ToString());
         request.Headers.Add("X-User-Role", UserRoles.Admin);
 
         // Act
@@ -314,6 +320,7 @@ public class UserEndpointsTests : ApiTestBase
         {
             Content = JsonContent.Create(new UserDetailModel(Guid.NewGuid(), validName, null, UserRoles.User))
         };
+        requestValid.Headers.Add("X-User-Id", Guid.NewGuid().ToString());
         requestValid.Headers.Add("X-User-Role", UserRoles.Admin);
 
         // Act 1
@@ -326,6 +333,7 @@ public class UserEndpointsTests : ApiTestBase
         {
             Content = JsonContent.Create(new UserDetailModel(Guid.NewGuid(), invalidName, null, UserRoles.User))
         };
+        requestInvalid.Headers.Add("X-User-Id", Guid.NewGuid().ToString());
         requestInvalid.Headers.Add("X-User-Role", UserRoles.Admin);
 
         // Act 2
@@ -346,6 +354,7 @@ public class UserEndpointsTests : ApiTestBase
         {
             Content = JsonContent.Create(new UserDetailModel(Guid.NewGuid(), "Valid Name", null, invalidRole))
         };
+        request.Headers.Add("X-User-Id", Guid.NewGuid().ToString());
         request.Headers.Add("X-User-Role", UserRoles.Admin);
 
         // Act
@@ -363,6 +372,7 @@ public class UserEndpointsTests : ApiTestBase
         {
             Content = JsonContent.Create(new UserDetailModel(Guid.NewGuid(), "Valid User", null, UserRoles.User))
         };
+        requestValid.Headers.Add("X-User-Id", Guid.NewGuid().ToString());
         requestValid.Headers.Add("X-User-Role", UserRoles.Admin);
 
         var responseValid = await Client.SendAsync(requestValid);
@@ -374,6 +384,7 @@ public class UserEndpointsTests : ApiTestBase
         {
             Content = JsonContent.Create(new UserDetailModel(Guid.NewGuid(), "Valid User 2", invalidPhotoUrl, UserRoles.User))
         };
+        requestInvalid.Headers.Add("X-User-Id", Guid.NewGuid().ToString());
         requestInvalid.Headers.Add("X-User-Role", UserRoles.Admin);
 
         var responseInvalid = await Client.SendAsync(requestInvalid);
@@ -467,6 +478,7 @@ public class UserEndpointsTests : ApiTestBase
         {
             Content = JsonContent.Create(new UserDetailModel(userId, "Promoted User", null, UserRoles.Admin))
         };
+        request.Headers.Add("X-User-Id", Guid.NewGuid().ToString());
         request.Headers.Add("X-User-Role", UserRoles.Admin);
 
         // Act
@@ -489,6 +501,7 @@ public class UserEndpointsTests : ApiTestBase
         {
             Content = JsonContent.Create(new UserDetailModel(unknownId, "Ghost User", null, UserRoles.User))
         };
+        request.Headers.Add("X-User-Id", Guid.NewGuid().ToString());
         request.Headers.Add("X-User-Role", UserRoles.Admin);
 
         // Act
@@ -529,6 +542,7 @@ public class UserEndpointsTests : ApiTestBase
         var userId = SeedUser("To Be Deleted", UserRoles.User);
 
         using var request = new HttpRequestMessage(HttpMethod.Delete, $"/api/user/{userId}");
+        request.Headers.Add("X-User-Id", Guid.NewGuid().ToString());
         request.Headers.Add("X-User-Role", UserRoles.Admin);
 
         // Act
@@ -576,6 +590,7 @@ public class UserEndpointsTests : ApiTestBase
     {
         // Arrange
         using var request = new HttpRequestMessage(HttpMethod.Delete, $"/api/user/{Guid.NewGuid()}");
+        request.Headers.Add("X-User-Id", Guid.NewGuid().ToString());
         request.Headers.Add("X-User-Role", UserRoles.Admin);
 
         // Act
@@ -625,25 +640,33 @@ public class UserEndpointsTests : ApiTestBase
     // ==========================================
 
     [Fact]
-    public async Task TC26_Security_AnonymousCallsToModifyingEndpoints_Returns403Or401()
+    public async Task TC26_Security_AnonymousCallsToModifyingEndpoints_Returns401Unauthorized()
     {
         // Arrange
         var userId = SeedUser("Target", UserRoles.User);
 
-        // Act 1: PUT without headers
+        // Act 1: POST without X-User-Id header
+        using var postRequest = new HttpRequestMessage(HttpMethod.Post, "/api/user")
+        {
+            Content = JsonContent.Create(new UserDetailModel(Guid.NewGuid(), "Anonymous Post", null, UserRoles.User))
+        };
+        var postResponse = await Client.SendAsync(postRequest);
+
+        // Act 2: PUT without X-User-Id header
         using var putRequest = new HttpRequestMessage(HttpMethod.Put, "/api/user")
         {
             Content = JsonContent.Create(new UserDetailModel(userId, "Anonymous Change", null, UserRoles.User))
         };
         var putResponse = await Client.SendAsync(putRequest);
 
-        // Act 2: DELETE without headers
+        // Act 3: DELETE without X-User-Id header
         using var deleteRequest = new HttpRequestMessage(HttpMethod.Delete, $"/api/user/{userId}");
         var deleteResponse = await Client.SendAsync(deleteRequest);
 
-        // Assert
-        Assert.Contains(putResponse.StatusCode, new[] { HttpStatusCode.Forbidden, HttpStatusCode.Unauthorized });
-        Assert.Contains(deleteResponse.StatusCode, new[] { HttpStatusCode.Forbidden, HttpStatusCode.Unauthorized });
+        // Assert: all mutating operations require caller identification
+        Assert.Equal(HttpStatusCode.Unauthorized, postResponse.StatusCode);
+        Assert.Equal(HttpStatusCode.Unauthorized, putResponse.StatusCode);
+        Assert.Equal(HttpStatusCode.Unauthorized, deleteResponse.StatusCode);
     }
 
     [Fact]
@@ -653,6 +676,7 @@ public class UserEndpointsTests : ApiTestBase
         var userId = SeedUser("User To Remove", UserRoles.User);
 
         using var request = new HttpRequestMessage(HttpMethod.Delete, $"/api/user/{userId}");
+        request.Headers.Add("X-User-Id", Guid.NewGuid().ToString());
         // Header contains a comma and spaces
         request.Headers.Add("X-User-Role", "user, admin");
 
@@ -786,5 +810,80 @@ public class UserEndpointsTests : ApiTestBase
 
         var list = await db.ShoppingLists.AsNoTracking().SingleAsync(l => l.Id == listId);
         Assert.Equal(adminId.ToString(), list.OwnerId);
+    }
+
+    [Fact]
+    public async Task TC32_CreateUser_MissingUserIdHeader_Returns401Unauthorized()
+    {
+        // Arrange
+        using var request = new HttpRequestMessage(HttpMethod.Post, "/api/user")
+        {
+            Content = JsonContent.Create(new UserDetailModel(Guid.NewGuid(), "Unauthorized User", null, UserRoles.User))
+        };
+        request.Headers.Add("X-User-Role", UserRoles.Admin);
+        // Deliberately no X-User-Id header
+
+        // Act
+        var response = await Client.SendAsync(request);
+
+        // Assert
+        Assert.Equal(HttpStatusCode.Unauthorized, response.StatusCode);
+    }
+
+    [Theory]
+    [InlineData("")]
+    [InlineData("   ")]
+    public async Task TC33_CreateUser_EmptyOrWhitespaceUserIdHeader_Returns401Unauthorized(string invalidUserId)
+    {
+        // Arrange
+        using var request = new HttpRequestMessage(HttpMethod.Post, "/api/user")
+        {
+            Content = JsonContent.Create(new UserDetailModel(Guid.NewGuid(), "Unauthorized User", null, UserRoles.User))
+        };
+        request.Headers.Add("X-User-Role", UserRoles.Admin);
+        request.Headers.Add("X-User-Id", invalidUserId);
+
+        // Act
+        var response = await Client.SendAsync(request);
+
+        // Assert
+        Assert.Equal(HttpStatusCode.Unauthorized, response.StatusCode);
+    }
+
+    [Fact]
+    public async Task TC34_UpdateUser_MissingUserIdHeader_Returns401Unauthorized()
+    {
+        // Arrange
+        var userId = SeedUser("Existing User");
+
+        using var request = new HttpRequestMessage(HttpMethod.Put, "/api/user")
+        {
+            Content = JsonContent.Create(new UserDetailModel(userId, "Updated User", null, UserRoles.User))
+        };
+        request.Headers.Add("X-User-Role", UserRoles.Admin);
+        // Deliberately no X-User-Id header
+
+        // Act
+        var response = await Client.SendAsync(request);
+
+        // Assert
+        Assert.Equal(HttpStatusCode.Unauthorized, response.StatusCode);
+    }
+
+    [Fact]
+    public async Task TC35_DeleteUser_MissingUserIdHeader_Returns401Unauthorized()
+    {
+        // Arrange
+        var userId = SeedUser("User To Delete");
+
+        using var request = new HttpRequestMessage(HttpMethod.Delete, $"/api/user/{userId}");
+        request.Headers.Add("X-User-Role", UserRoles.Admin);
+        // Deliberately no X-User-Id header
+
+        // Act
+        var response = await Client.SendAsync(request);
+
+        // Assert
+        Assert.Equal(HttpStatusCode.Unauthorized, response.StatusCode);
     }
 }

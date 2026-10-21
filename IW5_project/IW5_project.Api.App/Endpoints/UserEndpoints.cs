@@ -29,7 +29,8 @@ public class UserEndpoints : EndpointsBase
                 ? TypedResults.Ok(user)
                 : TypedResults.NotFound($"User {id} was not found."));
 
-        var userModifyingEndpoints = userEndpoints.MapGroup("");
+        var userModifyingEndpoints = userEndpoints.MapGroup("")
+            .AddEndpointFilter<RequireUserIdFilter>();
 
         // POST /api/user
         userModifyingEndpoints.MapPost("", Results<Created<Guid>, StatusCodeHttpResult> (
