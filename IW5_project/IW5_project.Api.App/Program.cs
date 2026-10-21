@@ -1,13 +1,15 @@
 using FluentValidation;
+using IW5_project.Api.App.Extensions;
 using IW5_project.Api.BL.Facades;
 using IW5_project.Api.Common.Models.Common;
+using IW5_project.Api.DAL.Common.Queries;
 using IW5_project.Api.DAL.Common.Repositories;
+using IW5_project.Api.DAL.EF;
 using IW5_project.Api.DAL.EF.Repositories;
-using IW5_project.Api.App.Extensions;
+using IW5_project.API.Common.Models.Common;
 using IW5_project.Common.Models.Common;
 using IW5_project.Common.Models.Place;
 using IW5_project.Common.Models.ShoppingList;
-using IW5_project.Api.DAL.EF;
 using Microsoft.EntityFrameworkCore;
 using BlPlaceMapper = IW5_project.Api.BL.Mappers.PlaceMapper;
 using BlShoppingListMapper = IW5_project.Api.BL.Mappers.ShoppingListMapper;
@@ -19,6 +21,11 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddOpenApiDocument();
+
+builder.Services.AddScoped<ItemService>();
+builder.Services.AddScoped<ItemFinder>();
+builder.Services.AddScoped<OrderItems>();
+builder.Services.AddScoped<FilterItems>();
 
 // database
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")
