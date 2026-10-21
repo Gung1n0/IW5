@@ -2,6 +2,7 @@ using IW5_project.Api.DAL.Common.Entities;
 using IW5_project.Api.DAL.Common.Mappers;
 using IW5_project.Api.DAL.Common.Repositories;
 using IW5_project.Common.Models.Common;
+using IW5_project.Common.Models.Enums;
 using Microsoft.EntityFrameworkCore;
 
 namespace IW5_project.Api.DAL.EF.Repositories
@@ -22,9 +23,15 @@ namespace IW5_project.Api.DAL.EF.Repositories
 
             var totalCount = users.Count();
 
+            // Sorting
+            var descending = query.sortDirection == SortDirection.Descending;
+            var sorted = descending
+                ? users.OrderByDescending(u => u.Name)
+                : users.OrderBy(u => u.Name);
+
             // Pagination Directly in the Database
-            var items = users
-                .OrderBy(u => u.Name)
+            var items = sorted
+                .ThenBy(u => u.Id)
                 .Skip((query.page - 1) * query.pageSize)
                 .Take(query.pageSize)
                 .ToList();

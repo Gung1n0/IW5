@@ -32,7 +32,7 @@ public class UserEndpoints : EndpointsBase
         var userModifyingEndpoints = userEndpoints.MapGroup("");
 
         // POST /api/user
-        userModifyingEndpoints.MapPost("", Results<Created<Guid>, ForbidHttpResult> (
+        userModifyingEndpoints.MapPost("", Results<Created<Guid>, StatusCodeHttpResult> (
                 UserDetailModel user,
                 IUserFacade userFacade,
                 IHttpContextAccessor httpContextAccessor) =>
@@ -47,13 +47,13 @@ public class UserEndpoints : EndpointsBase
             }
             catch (UnauthorizedAccessException)
             {
-                return TypedResults.Forbid();
+                return TypedResults.StatusCode(StatusCodes.Status403Forbidden);
             }
         })
             .AddEndpointFilter<ValidationFilter<UserDetailModel>>();
 
         // PUT /api/user
-        userModifyingEndpoints.MapPut("", Results<Ok<Guid>, NotFound<string>, ForbidHttpResult> (
+        userModifyingEndpoints.MapPut("", Results<Ok<Guid>, NotFound<string>, StatusCodeHttpResult> (
                 UserDetailModel user,
                 IUserFacade userFacade,
                 IHttpContextAccessor httpContextAccessor) =>
@@ -73,13 +73,13 @@ public class UserEndpoints : EndpointsBase
             }
             catch (UnauthorizedAccessException)
             {
-                return TypedResults.Forbid();
+                return TypedResults.StatusCode(StatusCodes.Status403Forbidden);
             }
         })
             .AddEndpointFilter<ValidationFilter<UserDetailModel>>();
 
         // DELETE /api/user/{id}
-        userModifyingEndpoints.MapDelete("{id:guid}", Results<Ok, NotFound<string>, ForbidHttpResult> (
+        userModifyingEndpoints.MapDelete("{id:guid}", Results<Ok, NotFound<string>, StatusCodeHttpResult> (
             Guid id,
             IUserFacade userFacade,
             IHttpContextAccessor httpContextAccessor) =>
@@ -98,7 +98,7 @@ public class UserEndpoints : EndpointsBase
             }
             catch (UnauthorizedAccessException)
             {
-                return TypedResults.Forbid();
+                return TypedResults.StatusCode(StatusCodes.Status403Forbidden);
             }
         });
 

@@ -21,6 +21,7 @@ using DalUserMapper = IW5_project.Api.DAL.Common.Mappers.UserMapper;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddHttpContextAccessor();
+builder.Services.AddAuthentication();
 builder.Services.AddEndpointsApiExplorer();
 // Temporary solution before User Identity providers setup
 builder.Services.AddOpenApiDocument(document =>

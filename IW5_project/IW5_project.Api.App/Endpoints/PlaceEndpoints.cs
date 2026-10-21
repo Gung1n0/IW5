@@ -46,7 +46,7 @@ public class PlaceEndpoints() : EndpointsBase
             .AddEndpointFilter<ValidationFilter<PlaceDetailModel>>();
 
         // PUT /api/place   (id is in the body, same as the template)
-        placeModifyingEndpoints.MapPut("", Results<Ok<Guid>, NotFound<string>, ForbidHttpResult> (
+        placeModifyingEndpoints.MapPut("", Results<Ok<Guid>, NotFound<string>, StatusCodeHttpResult> (
                 PlaceDetailModel place,
                 IPlaceFacade placeFacade,
                 IHttpContextAccessor httpContextAccessor) =>
@@ -66,13 +66,13 @@ public class PlaceEndpoints() : EndpointsBase
             }
             catch (UnauthorizedAccessException)
             {
-                return TypedResults.Forbid();
+                return TypedResults.StatusCode(StatusCodes.Status403Forbidden);
             }
         })
             .AddEndpointFilter<ValidationFilter<PlaceDetailModel>>();
 
         // DELETE /api/place/{id}
-        placeModifyingEndpoints.MapDelete("{id:guid}", Results<Ok, NotFound<string>, Conflict<string>, ForbidHttpResult> (
+        placeModifyingEndpoints.MapDelete("{id:guid}", Results<Ok, NotFound<string>, Conflict<string>, StatusCodeHttpResult> (
             Guid id,
             IPlaceFacade placeFacade,
             IHttpContextAccessor httpContextAccessor) =>
@@ -95,7 +95,7 @@ public class PlaceEndpoints() : EndpointsBase
             }
             catch (UnauthorizedAccessException)
             {
-                return TypedResults.Forbid();
+                return TypedResults.StatusCode(StatusCodes.Status403Forbidden);
             }
         });
 
