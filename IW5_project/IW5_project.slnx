@@ -1,3 +1,8 @@
 <Solution>
-  <Project Path="IW5_project.csproj" />
+  <Project Path="IW5_project.Api.App.EndToEndTests/IW5_project.Api.App.EndToEndTests.csproj" />
+  <Project Path="IW5_project.Api.App/IW5_project.Api.App.csproj" />
+  <Project Path="IW5_project.Api.BL/IW5_project.Api.BL.csproj" />
+  <Project Path="IW5_project.Api.DAL.Common/IW5_project.Api.DAL.Common.csproj" />
+  <Project Path="IW5_project.Api.DAL.EF/IW5_project.Api.DAL.EF.csproj" />
+  <Project Path="IW5_project.Common.Models/IW5_project.Common.Models.csproj" />
 </Solution>
