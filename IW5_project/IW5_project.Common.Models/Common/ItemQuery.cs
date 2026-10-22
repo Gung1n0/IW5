@@ -7,11 +7,8 @@ namespace IW5_project.Common.Models.Common
 {
     public class ItemQuery : PagedQueryBase
     {
-        public ItemQuery(
-            Guid? PlaceId,
-            ItemCategories Category = ItemCategories.Drogerie,
-            ItemSortBy Sort = ItemSortBy.Name
-            )
-        { }
+            public Guid? PlaceId { get; set; }
+            public ItemCategories? Category { get; set; } = ItemCategories.Drogerie;
+            public ItemSortBy? Sort { get; set; } = ItemSortBy.Name;
     }
 }
