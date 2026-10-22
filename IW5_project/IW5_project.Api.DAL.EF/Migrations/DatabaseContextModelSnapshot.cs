@@ -43,7 +43,7 @@ namespace IW5_project.Api.DAL.EF.Migrations
                     b.Property<string>("OwnerId")
                         .HasColumnType("TEXT");
 
-                    b.Property<Guid?>("PlaceEntityId")
+                    b.Property<Guid>("PlaceId")
                         .HasColumnType("TEXT");
 
                     b.Property<int>("Quantity")
@@ -51,7 +51,7 @@ namespace IW5_project.Api.DAL.EF.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("PlaceEntityId");
+                    b.HasIndex("PlaceId");
 
                     b.ToTable("Items");
                 });
@@ -176,9 +176,13 @@ namespace IW5_project.Api.DAL.EF.Migrations
 
             modelBuilder.Entity("IW5_project.Api.DAL.Common.Entities.ItemEntity", b =>
                 {
-                    b.HasOne("IW5_project.Api.DAL.Common.Entities.PlaceEntity", null)
+                    b.HasOne("IW5_project.Api.DAL.Common.Entities.PlaceEntity", "Place")
                         .WithMany("Items")
-                        .HasForeignKey("PlaceEntityId");
+                        .HasForeignKey("PlaceId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Place");
                 });
 
             modelBuilder.Entity("IW5_project.Api.DAL.Common.Entities.ShoppingListItemEntity", b =>

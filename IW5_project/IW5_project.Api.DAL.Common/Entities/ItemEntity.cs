@@ -10,7 +10,7 @@ namespace IW5_project.Api.DAL.Common.Entities
         public DateTime? ExpirationDate { get; set; } = null;
         public ItemCategories Category { get; set; } = ItemCategories.Potraviny;
         public string? Description { get; set; } = string.Empty;
-        
-        // TODO: Add connection to "author"
+        public Guid PlaceId = Guid.Empty;
+        public PlaceEntity? Place;
     }
 }

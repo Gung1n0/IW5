@@ -15,10 +15,10 @@ public class PlaceConfiguration : IEntityTypeConfiguration<PlaceEntity>
 
         builder.HasIndex(p => p.Name);
 
-        // implement when polozky is finished
-        //builder.HasMany(p => p.items)
-        //    .WithOne(i => i.Place)
-        //    .HasForeignKey(i => i.PlaceId)
-        //    .OnDelete(DeleteBehavior.Restrict);
+  
+        builder.HasMany(p => p.Items)
+            .WithOne(i => i.Place)
+            .HasForeignKey(i => i.PlaceId)
+            .OnDelete(DeleteBehavior.Restrict);
     }
 }
