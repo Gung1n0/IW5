@@ -1,5 +1,6 @@
 using FluentValidation;
 using IW5_project.Common;
+using IW5_project.Common.Models.Resources;
 
 namespace IW5_project.Common.Models.User;
 
@@ -10,17 +11,17 @@ public class UserDetailModelValidator : AbstractValidator<UserDetailModel>
     public UserDetailModelValidator()
     {
         RuleFor(u => u.Name)
-            .NotEmpty().WithMessage("User name is required.")
-            .MaximumLength(Constants.MAX_NAME_LENGTH).WithMessage($"Name cannot exceed {Constants.MAX_NAME_LENGTH} characters.");
+            .NotEmpty().WithMessage(UserDetailModelResources.UserNameMissingErrorMessage)
+            .MaximumLength(Constants.MAX_NAME_LENGTH).WithMessage(UserDetailModelResources.UserNameMaximumLengthExceededErrorMessage);
 
         RuleFor(u => u.Role)
-            .NotEmpty().WithMessage("Role is required.")
+            .NotEmpty().WithMessage(UserDetailModelResources.UserRoleMissingErrorMessage)
             .Must(role => role == UserRoles.User || role == UserRoles.Admin)
-            .WithMessage("Role must be either 'user' or 'admin'.");
+            .WithMessage(UserDetailModelResources.UserRoleInvalidErrorMessage);
 
         RuleFor(u => u.PhotoUrl)
             .MaximumLength(Constants.MAX_IMAGE_URL_LENGTH)
-            .WithMessage($"PhotoUrl cannot exceed {Constants.MAX_IMAGE_URL_LENGTH} characters.")
+            .WithMessage(UserDetailModelResources.UserPhotoUrlMaximumLengthExceededErrorMessage)
             .When(u => !string.IsNullOrEmpty(u.PhotoUrl));
     }
 }
