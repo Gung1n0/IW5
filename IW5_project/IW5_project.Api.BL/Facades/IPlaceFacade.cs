@@ -1,6 +1,5 @@
-﻿using IW5_project.Api.Common;
-using IW5_project.Api.Common.Models.Common;
-using IW5_project.Common.BL.Facades;
+using IW5_project.Common.Models;
+using IW5_project.Common.Models.Common;
 using IW5_project.Common.Models.Place;
 
 namespace IW5_project.Api.BL.Facades

@@ -1,7 +1,5 @@
-﻿using IW5_project.Api.DAL.Common.Entities;
-using IW5_project.Api.Common.Models.Common;
+using IW5_project.Api.DAL.Common.Entities;
 using IW5_project.Common.Models.Common;
-using IW5_project.Api.DAL.Common.Repositories;
 
 
 namespace IW5_project.Api.DAL.Common.Repositories

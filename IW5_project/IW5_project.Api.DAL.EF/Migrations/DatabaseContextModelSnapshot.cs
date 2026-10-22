@@ -147,6 +147,33 @@ namespace IW5_project.Api.DAL.EF.Migrations
                     b.ToTable("ShoppingListItems");
                 });
 
+            modelBuilder.Entity("IW5_project.Api.DAL.Common.Entities.UserEntity", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("OwnerId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("PhotoUrl")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Role")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Users");
+                });
+
             modelBuilder.Entity("IW5_project.Api.DAL.Common.Entities.ItemEntity", b =>
                 {
                     b.HasOne("IW5_project.Api.DAL.Common.Entities.PlaceEntity", null)

@@ -1,5 +1,5 @@
-﻿using IW5_project.Api.DAL.Common.Mappers;
-using IW5_project.Common.Installers;
+using IW5_project.Api.DAL.Common.Mappers;
+using IW5_project.Common.Models;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace IW5_project.Api.DAL.Common.Installers

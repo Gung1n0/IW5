@@ -1,6 +1,6 @@
 using System.Net;
 using System.Net.Http.Json;
-using IW5_project.Api.Common.Models.Common;
+using IW5_project.Common.Models.Common;
 using IW5_project.Common.Models.ShoppingList;
 
 namespace IW5_project.Api.App.EndToEndTests;

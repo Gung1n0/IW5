@@ -1,9 +1,5 @@
-﻿using IW5_project.Api.DAL.Common.Repositories;
-using IW5_project.Api.DAL.EF;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using IW5_project.Api.DAL.Common.Entities.Interfaces;
+using IW5_project.Api.DAL.Common.Repositories;
 
 namespace IW5_project.Api.DAL.EF.Repositories
 {

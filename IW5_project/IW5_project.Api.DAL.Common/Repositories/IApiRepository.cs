@@ -1,5 +1,3 @@
-﻿using System;
-using System.Collections.Generic;
 using IW5_project.Api.DAL.Common.Entities.Interfaces;
 
 namespace IW5_project.Api.DAL.Common.Repositories

@@ -1,5 +1,4 @@
-﻿using FluentValidation;
-using IW5_project.Api.Common.Models.Common;
+using FluentValidation;
 using IW5_project.Common.Models.Resources;
 
 namespace IW5_project.Common.Models.Common

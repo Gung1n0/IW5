@@ -1,4 +1,4 @@
-﻿using IW5_project.Api.DAL.Common.Entities;
+using IW5_project.Api.DAL.Common.Entities;
 using IW5_project.Common.Models.Place;
 using Riok.Mapperly.Abstractions;
 
@@ -8,7 +8,6 @@ namespace IW5_project.Api.BL.Mappers
     public partial class PlaceMapper
     {
         [MapProperty("Items.Count", nameof(PlaceListModel.ItemCount))]
-        //[MapperIgnoreSource(nameof(PlaceEntity.description))]
         [MapperIgnoreSource(nameof(PlaceEntity.OwnerId))]
         public partial PlaceListModel ToListModel(PlaceEntity entity);
 

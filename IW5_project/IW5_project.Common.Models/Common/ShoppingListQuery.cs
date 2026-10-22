@@ -1,5 +1,3 @@
-﻿using IW5_project.Api.Common.Models.Common;
-using IW5_project.Common.Enums;
 using IW5_project.Common.Models.Enums;
 
 namespace IW5_project.Common.Models.Common

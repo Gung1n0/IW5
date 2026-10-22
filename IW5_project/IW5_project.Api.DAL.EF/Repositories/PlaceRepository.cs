@@ -1,9 +1,8 @@
-﻿using IW5_project.Api.Common;
-using IW5_project.Api.Common.Models.Common;
 using IW5_project.Api.DAL.Common.Entities;
 using IW5_project.Api.DAL.Common.Mappers;
 using IW5_project.Api.DAL.Common.Repositories;
-using IW5_project.Common.Enums;
+using IW5_project.Common.Models.Common;
+using IW5_project.Common.Models.Enums;
 using Microsoft.EntityFrameworkCore;
 
 // TODO: add normalized searching in text (e.g. s vs š, etc.)

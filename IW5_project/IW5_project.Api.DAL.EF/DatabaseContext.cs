@@ -1,4 +1,4 @@
-﻿using IW5_project.Api.DAL.Common.Entities;
+using IW5_project.Api.DAL.Common.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace IW5_project.Api.DAL.EF
@@ -6,6 +6,7 @@ namespace IW5_project.Api.DAL.EF
     public class DatabaseContext : DbContext
     {
         public DbSet<PlaceEntity> Places { get; set; } = null!;
+        public DbSet<UserEntity> Users { get; set; } = null!;
         public DbSet<ShoppingListEntity> ShoppingLists { get; set; } = null!;
         public DbSet<ShoppingListItemEntity> ShoppingListItems { get; set; } = null!;
         public DbSet<ItemEntity> Items { get; set; } = null!;
@@ -17,6 +18,14 @@ namespace IW5_project.Api.DAL.EF
         {
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(DatabaseContext).Assembly);
             base.OnModelCreating(modelBuilder);
+            
+            // Rules setup for Users table
+            modelBuilder.Entity<UserEntity>(entity =>
+            {
+                entity.HasKey(u => u.Id);
+                entity.Property(u => u.Name).IsRequired().HasMaxLength(100);
+                entity.Property(u => u.Role).IsRequired().HasMaxLength(20);
+            });
         }
     }
 }

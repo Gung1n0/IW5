@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 
-namespace IW5_project.Common.Installers
+namespace IW5_project.Common.Models
 {
     public interface IInstaller
     {

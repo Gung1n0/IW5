@@ -1,7 +1,6 @@
-﻿using IW5_project.Api.App.Filters;
+using IW5_project.Api.App.Filters;
 using IW5_project.Api.BL;
 using IW5_project.Api.BL.Facades;
-using IW5_project.Api.Common.Models.Common;
 using IW5_project.Common.Models.Common;
 using IW5_project.Common.Models.ShoppingList;
 using Microsoft.AspNetCore.Http.HttpResults;

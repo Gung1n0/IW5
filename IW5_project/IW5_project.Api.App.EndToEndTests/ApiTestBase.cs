@@ -26,6 +26,19 @@ public abstract class ApiTestBase : IAsyncDisposable
     }
 
     // ---------- seeding (direct DB access; there are no Item endpoints yet) ----------
+    
+    protected Guid SeedUser(string name = "John Doe", string role = "user", string? photoUrl = null)
+    {
+        var id = Guid.NewGuid();
+        Factory.Seed(db => db.Users.Add(new UserEntity
+        {
+            Id = id,
+            Name = name,
+            Role = role,
+            PhotoUrl = photoUrl
+        }));
+        return id;
+    }
 
     protected Guid SeedItem(string name = "Milk")
     {

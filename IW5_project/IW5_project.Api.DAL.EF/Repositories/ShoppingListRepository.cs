@@ -1,14 +1,9 @@
-﻿using IW5_project.Api.DAL.EF.Repositories;
 using IW5_project.Api.DAL.Common.Entities;
-using IW5_project.Api.Common;
+using IW5_project.Api.DAL.Common.Mappers;
 using IW5_project.Api.DAL.Common.Repositories;
-using IW5_project.Api.DAL.EF;
-using IW5_project.Common.Enums;
 using IW5_project.Common.Models.Common;
 using IW5_project.Common.Models.Enums;
-using IW5_project.Api.DAL.Common.Mappers;
 using Microsoft.EntityFrameworkCore;
-using IW5_project.Api.Common.Models.Common;
 
 namespace IW5_project.Api.DAL.EF.Repositories
 {

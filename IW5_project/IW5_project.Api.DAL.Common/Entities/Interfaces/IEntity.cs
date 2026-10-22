@@ -1,4 +1,4 @@
-using IW5_project.Common;
+using IW5_project.Common.Models;
 
 namespace IW5_project.Api.DAL.Common.Entities.Interfaces
 {

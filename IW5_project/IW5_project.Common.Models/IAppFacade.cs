@@ -1,4 +1,4 @@
-﻿namespace IW5_project.Common.BL.Facades
+﻿namespace IW5_project.Common.Models
 {
     public interface IAppFacade
     {
